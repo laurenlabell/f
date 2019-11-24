@@ -33,9 +33,31 @@
 </head>
 <body>
 	<h1>Hello</h1>
+  	<form method="post" action="/api/users">
+  		<button onclick="requestData()">Click me!</button>
+	</form>
 
 <script language="javascript">
 
+function requestData() {
+    request.open('Post', 'ez-recipe.herokuapp.com/api/users', true);
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    request.onreadystatechange = function() {
+
+        if (request.readyState == 4 && request.status == 200){
+
+            data = JSON.parse(request.responseText);
+
+            alert(data);
+
+        }
+
+    }
+
+    request.send(param);
+
+}
 
 
 </script>
