@@ -13,10 +13,10 @@ app.get('/', (req, res) => {
 
 // Create connection
 const db = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'IhC2sM!!ah',
-  database : 'recipes'
+  host     : 'us-cdbr-iron-east-05.cleardb.net',
+  user     : 'b6c849268ba824',
+  password : '844cfd2b',
+  database : 'heroku_2d03395e7f80669'
 });
 
 /* Get all users */
