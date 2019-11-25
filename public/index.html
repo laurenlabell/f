@@ -39,8 +39,9 @@
 	</form>
 
 <script language="javascript">
-
+var request = new XMLHttpRequest();
 function requestData() {
+    
     request.open('get', 'ez-recipe.herokuapp.com/api/users', true);
     //request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
