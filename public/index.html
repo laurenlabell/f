@@ -34,7 +34,7 @@
 </head>
 <body>
 	<h1>Hello</h1>
-  	<form method="get" action="/api/users">
+  	<form >
   		<button onclick="requestData()">Click me!</button>
 	</form>
 
@@ -42,7 +42,7 @@
 var request = new XMLHttpRequest();
 function requestData() {
     
-    request.open('get', 'ez-recipe.herokuapp.com/api/users', true);
+    request.open('get', '/api/users', true);
     //request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     request.onreadystatechange = function() {
