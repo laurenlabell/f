@@ -210,6 +210,15 @@ function validateSave(save) {
     return Joi.validate(save, schema);
 };
 
+
+//May want to use this eventually
+/*app.use((req, res, next) => {
+    if(req.header('x-forwarded-proto') !== 'https') {
+        res.redirect(`https://${req.header('host')}${req.url}`);
+    } else {
+        next();
+    }
+});*/
 const port = process.env.PORT || 3000
 app.use(express.static("public"));
 app.listen(port, () => console.log(`Listening on port ${port}`));
