@@ -49,7 +49,7 @@ function requestData() {
 
         if (request.readyState == 4 && request.status == 200){
             data = JSON.parse(request.responseText);
-            alert(data);
+            console.log(data);
         }
 
     }
