@@ -35,7 +35,7 @@
 <body>
 	<h1>Hello</h1>
   	<form >
-  		<button onclick="requestData()">Click me!</button>
+  		<button onclick="requestData()">Insert User!</button>
 	</form>
 
 <script language="javascript">
@@ -43,13 +43,12 @@ var request = new XMLHttpRequest();
 function requestData() {
     
     request.open('get', '/api/users/acervantes', true);
-    //request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
+    //request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
     request.onreadystatechange = function() {
 
         if (request.readyState == 4 && request.status == 200){
             data = JSON.parse(request.responseText);
-            console.log(data);
+            alert(data);
         }
 
     }
