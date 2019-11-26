@@ -56,7 +56,7 @@ const data = {
 var request = new XMLHttpRequest();
 function requestData() {
     
-    request.open('post', '/api/recipes', true);
+    request.open('post', '/api/users', true);
     request.setRequestHeader({'Content-Type': 'application/json'});
     var data = new obj("JBorne23", "Jason", "Borne", "ohMyGodits");
 	request.body = JSON.stringify(data);
