@@ -40,28 +40,26 @@
 
 <script language="javascript">
 	
-function obj(username, firstname, lastname, pass){
-	this.username = username;
-	this.firstname = firstname;
-	this.lastname = lastname;
-	this.password = pass;
-}		
+		
 //$('#btn').click(function(){
 //	$.post("https://ez-recipe.herokuapp.com/api/users", new obj("JBorne23", "Jason", "Borne", "ohMyGodits"), function(data, status){
 //		console.log('${data} and status is ${status}')
 //	});
   
 //  })
-function hello(id){
-	this.recipe_id = id;
-}
+const data = {
+	username : "JBorne23",
+	firstname : "Jason",
+	lastname : "Borne",
+	password : "12345"
+};
 var request = new XMLHttpRequest();
 function requestData() {
     
     request.open('post', '/api/recipes', true);
-    request.setRequestHeader('Content-type', 'application/json');
+    request.setRequestHeader('Content-Type': 'application/json');
     var data = new obj("JBorne23", "Jason", "Borne", "ohMyGodits");
-	request.body = JSON.stringify(new hello(123456));
+	request.body = JSON.stringify(data);
     //request.body = "{\n\t\"username\": \"JBorne23\",\n\t\"firstname\": \"Jason\",\n\t\"lastname\": \"Borne\",\n\t\"password\": \"ohmygodIts\"\n}";
     request.onreadystatechange = function() {
 	
