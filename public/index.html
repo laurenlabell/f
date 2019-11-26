@@ -46,19 +46,23 @@ function obj(username, firstname, lastname, pass){
 	this.lastname = lastname;
 	this.password = pass;
 }		
-$('#btn').click(function(){
-	$.post("https://ez-recipe.herokuapp.com/api/users", new obj("JBorne23", "Jason", "Borne", "ohMyGodits"), function(data, status){
-		console.log('${data} and status is ${status}')
-	});
+//$('#btn').click(function(){
+//	$.post("https://ez-recipe.herokuapp.com/api/users", new obj("JBorne23", "Jason", "Borne", "ohMyGodits"), function(data, status){
+//		console.log('${data} and status is ${status}')
+//	});
   
-  })
+//  })
+function hello(id){
+	this.recipe_id = id;
+}
 var request = new XMLHttpRequest();
 function requestData() {
     
-    request.open('post', '/api/users', true);
+    request.open('post', '/api/recipes', true);
     request.setRequestHeader('Content-type', 'application/json');
     var data = new obj("JBorne23", "Jason", "Borne", "ohMyGodits");
-    request.body = "{\n\t\"username\": \"JBorne23\",\n\t\"firstname\": \"Jason\",\n\t\"lastname\": \"Borne\",\n\t\"password\": \"ohmygodIts\"\n}";
+	request.body = JSON.stringify(new hello(123456));
+    //request.body = "{\n\t\"username\": \"JBorne23\",\n\t\"firstname\": \"Jason\",\n\t\"lastname\": \"Borne\",\n\t\"password\": \"ohmygodIts\"\n}";
     request.onreadystatechange = function() {
 	
         if (request.readyState == 4 && request.status == 200){
