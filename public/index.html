@@ -46,14 +46,30 @@ function obj(username, firstname, lastname, pass){
 	this.lastname = lastname;
 	this.password = pass;
 }	
-	
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://ez-recipe.herokuapp.com/api/users",
+  "method": "POST",
+  "headers": {
+    "content-type": "application/json",
+    "cache-control": "no-cache",
+    "postman-token": "bde0714f-8e92-295e-517e-4fc490ffea54"
+  },
+  "processData": false,
+  "data": "{\n\t\"username\": \"jbond\",\n\t\"firstname\": \"James\",\n\t\"lastname\": \"Bond\",\n\t\"password\": \"007\"\n}"
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});	
 var request = new XMLHttpRequest();
 function requestData() {
     
     request.open('post', '/api/users', true);
     request.setRequestHeader('Content-type', 'application/json');
     var data = new obj("JBorne23", "Jason", "Borne", "ohMyGodits");
-    request.body = {"username" : "JBorne23", "firstname":"Jason", "lastname":"Borne","password":"ohMyGodits"};
+    request.body = "{\n\t\"username\": \"JBorne23\",\n\t\"firstname\": \"Jason\",\n\t\"lastname\": \"Borne\",\n\t\"password\": \"ohmygodIts\"\n}";
     request.onreadystatechange = function() {
 	
         if (request.readyState == 4 && request.status == 200){
