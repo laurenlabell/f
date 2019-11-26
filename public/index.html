@@ -46,7 +46,7 @@ function obj(username, firstname, lastname, pass){
 	this.lastname = lastname;
 	this.password = pass;
 }		
-$(#btn).click(function(){
+$('#btn').click(function(){
 	$.post("https://ez-recipe.herokuapp.com/api/users", new obj("JBorne23", "Jason", "Borne", "ohMyGodits"), function(data, status){
 		console.log('${data} and status is ${status}')
 	});
