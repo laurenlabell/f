@@ -52,7 +52,7 @@ function requestData() {
     
     request.open('post', '/api/user', true);
     request.setRequestHeader('Content-type', 'application/json');
-    var data = new obj(JBorne23, Jason, Borne, ohMyGodits);
+    var data = new obj("JBorne23", "Jason", "Borne", "ohMyGodits");
     request.body = JSON.stringify(data);
     request.onreadystatechange = function() {
 	
