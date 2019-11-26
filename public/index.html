@@ -45,20 +45,7 @@ function obj(username, firstname, lastname, pass){
 	this.firstname = firstname;
 	this.lastname = lastname;
 	this.password = pass;
-}	
-var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://ez-recipe.herokuapp.com/api/users",
-  "method": "POST",
-  "headers": {
-    "content-type": "application/json",
-    "cache-control": "no-cache",
-    "postman-token": "bde0714f-8e92-295e-517e-4fc490ffea54"
-  },
-  "processData": false,
-  "data": "{\n\t\"username\": \"jbond\",\n\t\"firstname\": \"James\",\n\t\"lastname\": \"Bond\",\n\t\"password\": \"007\"\n}"
-}
+}		
 
 $.ajax(settings).done(function (response) {
   console.log(response);
