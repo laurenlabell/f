@@ -35,20 +35,30 @@
 <body>
 	<h1>Hello</h1>
   	<form >
-  		<button onclick="requestData()">Insert User!</button>
+  		<button onclick="requestData()">Insert User</button>
 	</form>
 
 <script language="javascript">
+	
+function obj(username, firstname, lastname, pass){
+	this.username = username;
+	this.firstname = firstname;
+	this.lastname = lastname;
+	this.password = pass;
+}	
+	
 var request = new XMLHttpRequest();
 function requestData() {
     
-    request.open('get', '/api/users/acervantes', true);
-    //request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+    request.open('post', '/api/user', true);
+    request.setRequestHeader('Content-type', 'application/json');
+    var data = new obj(JBorne23, Jason, Borne, ohMyGodits);
+    request.body = JSON.stringify(data);
     request.onreadystatechange = function() {
-
+	
         if (request.readyState == 4 && request.status == 200){
             data = JSON.parse(request.responseText);
-            alert(data);
+            console.log(data);
         }
 
     }
