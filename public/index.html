@@ -35,7 +35,7 @@
 <body>
 	<h1>Hello</h1>
   	<form >
-  		<button onclick="requestData()">Insert User 123</button>
+  		<button id="btn" >Insert User 123</button>
 	</form>
 
 <script language="javascript">
@@ -46,7 +46,12 @@ function obj(username, firstname, lastname, pass){
 	this.lastname = lastname;
 	this.password = pass;
 }		
-
+$(#btn).click(function(){
+	$.post("https://ez-recipe.herokuapp.com/api/users", new obj("JBorne23", "Jason", "Borne", "ohMyGodits"), function(data, status){
+		console.log('${data} and status is ${status}')
+	});
+  
+  })
 $.ajax(settings).done(function (response) {
   console.log(response);
 });	
