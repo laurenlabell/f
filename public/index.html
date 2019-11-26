@@ -57,7 +57,7 @@ var request = new XMLHttpRequest();
 function requestData() {
     
     request.open('post', '/api/users', true);
-    request.setRequestHeader({'Content-Type': 'application/json'});
+    request.setRequestHeader({'Content-Type':'application/json'});
     request.body = JSON.stringify(data);
     //request.body = "{\n\t\"username\": \"JBorne23\",\n\t\"firstname\": \"Jason\",\n\t\"lastname\": \"Borne\",\n\t\"password\": \"ohmygodIts\"\n}";
     request.onreadystatechange = function() {
