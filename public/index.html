@@ -53,7 +53,7 @@ function requestData() {
     request.open('post', '/api/users', true);
     request.setRequestHeader('Content-type', 'application/json');
     var data = new obj("JBorne23", "Jason", "Borne", "ohMyGodits");
-    request.body = JSON.stringify(data);
+    request.body = {"username" : "JBorne23", "firstname":"Jason", "lastname":"Borne","password":"ohMyGodits"};
     request.onreadystatechange = function() {
 	
         if (request.readyState == 4 && request.status == 200){
