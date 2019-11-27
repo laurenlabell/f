@@ -21,8 +21,7 @@
 
         // postData('/api/users', user);
         var answer = requestData('/api/users');
-        var obj = answer.json;
-        console.log(obj.stringify());
+        console.log(answer.stringify());
 
         /*else {
             console.log("error!");
@@ -48,7 +47,7 @@
                 if (response.ok) {
                     alert("gut");
                     console.log(response);
-                    return response;
+                    return response.json;
                 }
                 alert("error");
                 console.log("error");
