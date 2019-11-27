@@ -71,6 +71,7 @@ Http.send();
 
 Http.onreadystatechange = (e) => {
     if (this.readyState==4 && this.status==200) {
+        alert("i am here");
         console.log(Http.responseText);
     }
 }
