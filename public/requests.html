@@ -12,16 +12,7 @@
 
 
     <script language="javascript">
-        var u = "The Jackal";
-        var f = "Burton";
-        var l = "Guster";
-        var p = "c'mon son";
 
-        var user = { username: u,
-                     firstname: f,
-                     lastname: l,
-                     password: p
-        };
         /*
         // postData('/api/users', user);
         var answer = requestData('/api/users');
@@ -91,6 +82,17 @@ console.log(deets);*/
 }*/
 //https://javascript.info/fetch
 
+    var u = "hank11";
+    var f = "Tom";
+    var l = "Hanks";
+    var p = "99999";
+
+    var user = { username: u,
+                 firstname: f,
+                 lastname: l,
+                 password: p
+    };
+
 
     function getRequest() {
         var request = new XMLHttpRequest();
@@ -109,8 +111,26 @@ console.log(deets);*/
         request.send();
     }
 
-    getRequest();
+    function postRequest() {
+        var request = new XMLHttpRequest();
+        request.open("POST", "https://ez-recipe.herokuapp.com/api/users", true);
+        request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                var result = request.responseText;    
+                console.log(result);  
+            }
+            else if (request.readyState == 4 && request.status != 200) {
+                console.log("error");
+            }
+        }
+
+        request.send(JSON.stringify(user));
+    }
+
+    //getRequest();
+    postRequest();
 
 
     </script>  
