@@ -8,10 +8,10 @@
 
 
     <script language="javascript">
-        var u = "bags";
-        var f = "Frodo";
-        var l = "Baggins";
-        var p = "theShire"
+        var u = "The Jackal";
+        var f = "Burton";
+        var l = "Guster";
+        var p = "c'mon son"
 
         var user = { username: u,
                      firstname: f,
@@ -19,16 +19,20 @@
                      password: p
         };
 
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        }
+        postData('/api/users', user);
 
-        var result = fetch('/api/users', options);
-        alert(result);
+        function postData(url, data) {
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+
+            var result = fetch(url, options);
+            return result
+        }
 
     </script>  
 
