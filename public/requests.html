@@ -33,6 +33,14 @@
             var result = fetch(url, options);
             return result
         };
+      
+        function requestData(url) {
+            var result = fetch(url);
+            console.log(result);
+            return result;
+        };
+
+        requestData('/api/users');
 
     </script>  
 
