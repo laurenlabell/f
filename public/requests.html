@@ -73,10 +73,10 @@ fetch(Url)
 
 console.log(data);*/
 
-let Url = 'https://ez-recipe.herokuapp.com/api/users';
-let response = await fetch(Url);
+var Url = 'https://ez-recipe.herokuapp.com/api/users';
+var response = await fetch(Url);
 
-let deets = await response.json(); // read response body and parse as JSON
+var deets = await response.json(); // read response body and parse as JSON
 
 console.log(deets);
 
