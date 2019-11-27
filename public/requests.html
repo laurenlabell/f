@@ -12,15 +12,31 @@
 
 <script language="javascript">
 
+    // will be an error if you run this - user is already in the db
     var u = "eecs";
     var f = "Keanu";
     var l = "Reeves";
     var p = "password";
 
-    var user = { username: u,
-                 firstname: f,
-                 lastname: l,
-                 password: p
+    var user = { 
+        username: u,
+        firstname: f,
+        lastname: l,
+        password: p
+    };
+
+    // havn't tested these but here are the formats for possible objects:
+    var recipe = { recipe_id: 23 };
+    var review = {
+        rating: 4,    // int [0, 5]
+        upvote: true, // i'm too lazy to remove this so we can just ignore it & always store true
+        review: ":)",
+        username: "llabell", // username and recipe_id must be in database 
+        recipe_id: 3         // --> (can't review a recipe that doesn't exist - same w/ user)
+    };
+    var aSave = {
+        username: "llabell",
+        recipe_id: 3
     };
 
 
@@ -42,7 +58,7 @@
         request.send();
     }
 
-    // get a particular user - only diff is we add username at end of url
+    // get a particular user - only difference is we add username at end of url
     function getUser() {
         var request = new XMLHttpRequest();
         request.open("GET", "https://ez-recipe.herokuapp.com/api/users/llabell", true);
@@ -79,14 +95,34 @@
         request.send(JSON.stringify(user));
     }
 
+    // a user unsaves a recipe
+    function deleteSave() {
+        var request = new XMLHttpRequest();
+        request.open("DELETE", "https://ez-recipe.herokuapp.com/api/saves/llabell/1", true);
+
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                var result = request.responseText;    
+                console.log(result);  
+            }
+            else if (request.readyState == 4 && request.status != 200) {
+                console.log("error");
+            }
+        }
+
+        request.send();
+    }
+
     getAllUsers();
     addUser();
     getUser();
+    deleteSave();
 
 </script>  
 
 
 </body>
 </html>
+
 
 
