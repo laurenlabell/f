@@ -20,7 +20,11 @@
         };
 
         // postData('/api/users', user);
-        requestData('/api/users');
+        var response = requestData('/api/users');
+        if response.ok
+            console.log(response);
+        else
+            console.log("error!");
 
         function postData(url, data) {
             const options = {
