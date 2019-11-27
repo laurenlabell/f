@@ -16,7 +16,7 @@
         var u = "The Jackal";
         var f = "Burton";
         var l = "Guster";
-        var p = "c'mon son"
+        var p = "c'mon son";
 
         var user = { username: u,
                      firstname: f,
@@ -64,17 +64,11 @@
         };*/
 
 
-const Http = new XMLHttpRequest();
-const url='https://ez-recipe.herokuapp.com/api/users';
-Http.open("GET", url);
-Http.send();
 
-Http.onreadystatechange = (e) => {
-    if (this.readyState==4 && this.status==200) {
-        alert("i am here");
-        console.log(Http.responseText);
-    }
-}
+const Url='https://ez-recipe.herokuapp.com/api/users';
+fetch(Url)
+.then(data=>{return data.json()})
+.then(res->{console.log(res)})
 
     </script>  
 
