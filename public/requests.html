@@ -46,12 +46,15 @@
             fetch(url)
             .then(function(response) {
                 if (response.ok) {
+                    alert("okay");
                     console.log(response);
                     return response;
                 }
+                alert("error");
                 console.log("error");
             })
             .catch(function(error) {
+                alert("worse error");
                 console.log(error);
             });
         };
