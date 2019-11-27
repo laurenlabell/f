@@ -62,26 +62,24 @@
                 console.log(error);
             });
         };*/
-var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://ez-recipe.herokuapp.com/api/users",
-  "method": "GET",
-  "headers": {
-    "content-type": "application/json",
-    "cache-control": "no-cache",
-    "postman-token": "3b5a3626-bfca-2c19-3d24-07e3a93c4443"
-  },
-  "processData": false,
-  "data": user.stringify()
-}
 
-$.ajax(settings).done(function (response) {
-  console.log(response);
-});
+
+const Http = new XMLHttpRequest();
+const url='https://ez-recipe.herokuapp.com/api/users';
+Http.open("GET", url);
+Http.send();
+
+Http.onreadystatechange = (e) => {
+    if (this.readyState==4 && this.status==200) {
+        console.log(Http.responseText);
+    }
+}
 
     </script>  
 
 
 </body>
 </html>
+
+
+
