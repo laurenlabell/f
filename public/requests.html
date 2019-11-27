@@ -1,16 +1,32 @@
 <!DOCTYPE HTML>
 <head>
-  <title>Requests</title>
-  <meta charset = "UTF-8">
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous">
-</script>
+    <title>Requests</title>
+    <meta charset = "UTF-8">
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+    </script>
 </head>
 <body>
 
 <script language="javascript">
+
+    /* Note:
+     *     - if you want to run this make sure to change the user in the POST example
+     *       as the username is already taken
+     *     - ^ same with the deleteSave (it's already been deleted)
+     *     - if you want to inspect the database:
+     *           - I have a free trial of Navicat for MySQL - it's for like 14 days so it
+     *             might be good to download to use during the project
+     *     - you can connect to the database by using the credentials:
+     *           - username: b6c849268ba824
+     *           - password: 844cfd2b
+     *           - host: us-cdbr-iron-east-05.cleardb.net
+     *       lmk if this doesn't work cause I may have forgotten smth
+     *     - right now database has a bunch of fake recipe_ids so it will probably
+     *       not work to try to call the api using any of these recipes
+     */
 
     // will be an error if you run this - user is already in the db
     var u = "eecs";
@@ -25,7 +41,7 @@
         password: p
     };
 
-    // havn't tested these but here are the formats for possible objects:
+    // I havn't tested these but here are the formats for possible objects:
     var recipe = { recipe_id: 23 };
     var review = {
         rating: 4,    // int [0, 5]
@@ -123,6 +139,5 @@
 
 </body>
 </html>
-
 
 
