@@ -21,10 +21,12 @@
 
         // postData('/api/users', user);
         var response = requestData('/api/users');
-        if response.ok
+        if (response.ok) {
             console.log(response);
-        else
+        }
+        /*else {
             console.log("error!");
+        }*/
 
         function postData(url, data) {
             const options = {
