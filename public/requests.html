@@ -21,6 +21,9 @@
 
         // postData('/api/users', user);
         var response = requestData('/api/users');
+        obj = response.json;
+        console.log(obj.stringify());
+
         /*else {
             console.log("error!");
         }*/
