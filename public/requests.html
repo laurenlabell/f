@@ -20,7 +20,6 @@
         };
 
         postData('/api/users', user);
-        getData('/api/users');
 
         function postData(url, data) {
             const options = {
@@ -33,12 +32,6 @@
 
             var result = fetch(url, options);
             return result
-        };
-
-        function getData(url) {
-            var result = fetch(url);
-            console.log(result);
-            return fetch(url);
         };
 
     </script>  
