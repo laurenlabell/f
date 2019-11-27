@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+<head>
+  <title>Requests</title>
+  <meta charset = "UTF-8" />
+</head>
+<body>
+
+
+    <script language="javascript">
+        var user = { username: "hpot",
+                     firstname: "Harry",
+                     lastname: "Potter",
+                     password: "dursley"
+        };
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        }
+
+        var result = fetch('/api/users', options);
+        alert(result);
+
+    </script>  
+
+
+</body>
+</html>
