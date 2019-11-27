@@ -3,6 +3,11 @@
 <head>
   <title>Requests</title>
   <meta charset = "UTF-8" />
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous">
+</script>
 </head>
 <body>
 
@@ -18,14 +23,14 @@
                      lastname: l,
                      password: p
         };
-
+        /*
         // postData('/api/users', user);
         var answer = requestData('/api/users');
         console.log(answer.stringify());
 
-        /*else {
-            console.log("error!");
-        }*/
+        //else {
+            //console.log("error!");
+        //}
 
         function postData(url, data) {
             const options = {
@@ -38,10 +43,10 @@
 
             var result = fetch(url, options);
             return result
-        };
+        };*/
 
         // uses get method - check response is okay
-        function requestData(url) {
+        /*function requestData(url) {
             fetch(url)
             .then(function(response) {
                 if (response.ok) {
@@ -56,7 +61,24 @@
                 alert("worse error");
                 console.log(error);
             });
-        };
+        };*/
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://ez-recipe.herokuapp.com/api/users",
+  "method": "GET",
+  "headers": {
+    "content-type": "application/json",
+    "cache-control": "no-cache",
+    "postman-token": "3b5a3626-bfca-2c19-3d24-07e3a93c4443"
+  },
+  "processData": false,
+  "data": user.stringify();
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
 
     </script>  
 
