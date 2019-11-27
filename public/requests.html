@@ -21,9 +21,6 @@
 
         // postData('/api/users', user);
         var response = requestData('/api/users');
-        if (response.ok) {
-            console.log(response);
-        }
         /*else {
             console.log("error!");
         }*/
@@ -45,7 +42,11 @@
         function requestData(url) {
             fetch(url)
             .then(function(response) {
-                return response;
+                if (response.ok) {
+                    console.log(response);
+                    return response;
+                }
+                console.log("error");
             })
             .catch(function(error) {
                 console.log(error);
