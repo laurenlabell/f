@@ -8,10 +8,15 @@
 
 
     <script language="javascript">
-        var user = { username: "hpot",
-                     firstname: "Harry",
-                     lastname: "Potter",
-                     password: "dursley"
+        var u = "bags";
+        var f = "Frodo";
+        var l = "Baggins";
+        var p = "theShire"
+
+        var user = { username: u,
+                     firstname: f,
+                     lastname: l,
+                     password: p
         };
 
         const options = {
@@ -23,7 +28,7 @@
         }
 
         var result = fetch('/api/users', options);
-        alert(result.body);
+        alert(result);
 
     </script>  
 
