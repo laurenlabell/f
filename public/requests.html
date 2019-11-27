@@ -20,8 +20,8 @@
         };
 
         // postData('/api/users', user);
-        var response = requestData('/api/users');
-        obj = response.json;
+        var answer = requestData('/api/users');
+        obj = answer.json;
         console.log(obj.stringify());
 
         /*else {
@@ -46,7 +46,7 @@
             fetch(url)
             .then(function(response) {
                 if (response.ok) {
-                    alert("okay");
+                    alert("gut");
                     console.log(response);
                     return response;
                 }
