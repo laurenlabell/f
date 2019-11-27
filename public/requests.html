@@ -66,9 +66,12 @@
 
 
 const Url='https://ez-recipe.herokuapp.com/api/users';
-fetch(Url)
+var stuff = fetch(Url)
 .then(data=>{return data.json()})
 .then(res=>{console.log(res)})
+.catch(error=>console.log(error))
+
+console.log(stuff);
 
     </script>  
 
