@@ -56,7 +56,7 @@
       </ul>
     <form class="navbar-form navbar-left">
       <div class="form-group">
-        <input id="alkdfjaslkdfjdsl" type="text" class="form-control" placeholder="Search for a recipe">
+        <input id="nav-bar-search" type="text" class="form-control" placeholder="Search for a recipe">
       </div>
       <!-- <a href="#"><span class="glyphicon glyphicon-search"></span></a> -->
       <!-- <button onclick="myFunction()" class="btn btn-default">Search</button> -->
@@ -73,25 +73,16 @@
 
 <script language="javascript">
   $(document).ready(function() {
-    console.log("here");
-
-    $("#alkdfjaslkdfjdsl").keyup(function() {
-      alert("alsdhf");
+    $("#nav-bar-search").keyup(function(e) {
+      var key = e.which || e.keyCode
+      if (key === 13) {
+        // Cancel the default action, if needed
+        console.log("search initiated");
+      }
     });
   });
 
 
-  /*
-  var input = document.getElementById("nav-search-bar");
-
-  input.addEventListener("keyup", function(e) {
-    var key = e.which || e.keyCode
-    if (key === 13) {
-      // Cancel the default action, if needed
-      event.preventDefault();
-      console.log(key);
-    }
-});*/
 
 </script>
   
