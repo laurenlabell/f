@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Navigation Bar</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript" src="cookies.js-master/cookies.js"></script>
 
 
 <link href="https://fonts.googleapis.com/css?family=Vollkorn:900&display=swap" rel="stylesheet">
@@ -39,9 +42,44 @@
 <body>
 
   <script language="javascript">
-    function myFunction() {
-      alert("HELLO");
+
+/*
+    document.cookie = "test1=Hello";
+    document.cookie = "test2=World";
+
+    var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)sdfsd\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+    function alertCookieValue() {
+        if (cookieValue == null)
+            alert("yay");
+        alert(cookieValue);
     }
+
+    function alertCookie() {
+        alert(document.cookie);
+    }*/
+
+    function loginCookie(username) {
+      docCookies.setItem("username", username);
+      alert(docCookies.getItem("username"));
+    }
+
+    function logoutCookie(username) {
+      docCookies.removeItem("username");
+      if (docCookies.hasItem("username")) {
+        alert("fail");
+      }
+      else {
+        alert("pass");
+      }
+    }
+
+    function searchCookie(query) {
+      docCookies.setItem("search", query);
+      alert(docCookies.getItem("search"));
+    }
+
+
   </script>
 
 <nav class="navbar navbar-default">
@@ -74,15 +112,24 @@
   </div>
 </nav>
 
+<button onclick="loginCookie('lng')">LOGIN</button>
+<button onclick="logoutCookie('lng')">LOGOUT</button>
+<button onclick="searchCookie('pumpkin pie')">SEARCH</button>
+
+
+
 <script language="javascript">
-  $(document).ready(function() {
-    $('#nav-bar-search').keypress(function(event){
-      var keycode = (event.keyCode ? event.keyCode : event.which);
-      if (keycode == '13'){
-          alert('User has searched a recipegv'); 
-      }
+    $(document).ready(function() {
+        $('#nav-bar-search').keypress(function(event){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13'){
+            alert('User has searched a recipegv'); 
+        }
+        });
+
+
+
     });
-  });
 
 
 
