@@ -107,7 +107,7 @@
             }
             else if (request.readyState == 4 && request.status != 200) {
                 var result = request.responseText;    
-                console.log(result);
+                if (result == "ER_DUP_ENTRY") alert("Username is already taken! Please choose another.");
             }
         }
 
