@@ -16,6 +16,8 @@
      *     - if you want to run this make sure to change the user in the POST example
      *       as the username is already taken
      *     - ^ same with the deleteSave (it's already been deleted)
+     * ^^^ UPDATE - I added code in the addUser example to take care of this error message
+     *       client-side, which will be easier than me doing another query in the database.
      *     - if you want to inspect the database:
      *           - I have a free trial of Navicat for MySQL - it's for like 14 days so it
      *             might be good to download to use during the project
@@ -94,7 +96,7 @@
         request.send();
     }
 
-    // add a new user - make sure to check username is unique before doing this
+    // add a new user 
     function addUser() {
         var request = new XMLHttpRequest();
         request.open("POST", "https://ez-recipe.herokuapp.com/api/users", true);
