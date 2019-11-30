@@ -55,6 +55,15 @@ app.get('/api/recipes/:recipe_id', (req, res) => {
     });
 });
 
+/* Get the top 20 recipes i.e. recipes with the highest reviews */
+app.get('/api/popular', (req, res) => {
+    const sql = 'select r.recipe_id, avg(v.rating) from recipe r, review v where r.recipe_id = v.recipe_id group by r.recipe_id order by avg(v.rating) desc limit 20';
+    const query = db.query(sql, (err, results) => {
+        if (err) return res.status(400).send(err.code)
+        res.send(results); 
+    });
+});
+
 /* Get all reviews */
 app.get('/api/reviews', (req, res) => {
     const sql = 'select * from review';
