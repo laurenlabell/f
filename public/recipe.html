@@ -246,6 +246,7 @@
   <script type="text/javascript">
     //Figure out how to get the cookie for this
     var ID = 1003464;
+    var userName = "acervantes";
     //docCookies.getRecipe();
 
     function getRecipe() {
@@ -330,13 +331,13 @@
 
     function saveReview(){
       var formInput = document.getElementById("formRev");
-      review = new rev(formInput[1].value ,true, formInput[0].value, "", ID);
+      review = new rev(formInput[1].value ,true, formInput[0].value, userName, ID);
       postReview();
     }
 
     function postReview(){
         var request = new XMLHttpRequest();
-        request.open("POST", "https://ez-recipe.herokuapp.com/api/users", true);
+        request.open("POST", "https://ez-recipe.herokuapp.com/api/reviews", true);
         request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
@@ -345,7 +346,7 @@
             }
             else if (request.readyState == 4 && request.status != 200) {
                 var result = request.responseText;    
-                if (result == "ER_DUP_ENTRY") alert("Username is already taken! Please choose another.");
+                if (result == "ER_DUP_ENTRY") alert("Something went wrong inserting review");
             }
         }
         request.send(JSON.stringify(review));
