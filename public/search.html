@@ -211,8 +211,10 @@
       // Step 3: set up event handler/callback
       requestGen.onreadystatechange = function() {
         if (requestGen.readyState == 4 && requestGen.status == 200) {
+          alert("success");
           // Step 5: wait for done + success
           result1 = requestGen.responseText;
+          alert(result1);
           result = JSON.parse(result);
           console.log(result1);
           //console.log(result.length);
@@ -234,9 +236,11 @@
           document.getElementById("img").innerHTML = "<img class='imager' src='" + result.image + "' />";
         }
         else if (requestGen.readyState == 4 && requestGen.status != 200) {
+          alert("failure");
           //document.getElementById("ingredients").innerHTML = "Something is wrong! Very sad " + requestGen.status;
         }
         else if (requestGen.readyState == 3) {
+          alert("in progress");
           //document.getElementById("ingredients").innerHTML = "Search in progress, too impatient";
         }
       }
