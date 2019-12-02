@@ -287,7 +287,7 @@
     function getReviews(){
       request = new XMLHttpRequest();
       //request.open('get', '/api/reviews/' + ID, true);
-      request.open('get', '/api/reviews/3', true);
+      request.open('get', '/api/reviews/1', true);
       request.onreadystatechange = function() {
           if (request.readyState == 4 && request.status == 200){
               data = JSON.parse(request.responseText);
