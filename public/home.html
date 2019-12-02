@@ -63,7 +63,7 @@
       });
     });
 
-    // get a particular user - only difference is we add username at end of url
+    // gets top 20 most popular recipes based on reviews 
     function getPopular() {
         alert("in popular")
         var request = new XMLHttpRequest();
@@ -83,6 +83,7 @@
         }
         request.send();
     }
+    getPopular();
 </script>
   
 
