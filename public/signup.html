@@ -181,20 +181,21 @@ button:hover {
 </form>
 
 <script>
-
 	function goback()
 	{
-		location.replace("loginhomepage.html")
+		location.replace("loginhomepage.html");
+		console.log("in goback function");
 	}
 
 
 	function addUser() {
+		console.log("in addUser function");
 		var u = $('#username').val();
 		var f = $('#firstname').val();
 		var l = $('#lastname').val();
 		var p = $('#password').val();
 		console.log(u, f, l, p);
-	    var user = { 
+	var user = { 
         username: u,
         firstname: f,
         lastname: l,
