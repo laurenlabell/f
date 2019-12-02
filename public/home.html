@@ -81,7 +81,8 @@
                 result = JSON.parse(result);
                 console.log(result)
                 for (i in result) {
-                    console.log(result[i].recipe_id)
+                    displayRecipe()
+//                     console.log(result[i].recipe_id)
                 }
 //                 var id_array = [];
 //                 id_array.push(result['recipe_id']);
@@ -100,9 +101,27 @@
         request.send();
     }
     getPopular();
-//     function getRecipe(recipe_id) {
-      
-//     }
+    function displayRecipe(recipe_id) {
+        var request = new XMLHttpRequest();
+        request.open("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/quickAnswer?q=How%20much%20vitamin%20c%20is%20in%202%20apples%253F?apiKey=2c1535fc86mshca48f3709ae9497p1b6a60jsnb0592da5739b", true);
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                result = request.responseText;
+                alert("hi spoon")    
+                console.log(result); 
+                result = JSON.parse(result);
+                console.log(result)
+                document.getElementById("recipeName").innerHTML = result.title;
+                document.getElementById("img").innerHTML = "<img class='imager' src='" + result.image + "' />";
+
+            }
+            else if (request.readyState == 4 && request.status != 200) {
+                result = request.responseText;    
+                console.log(result); 
+            }
+        }
+        request.send();
+    }
   
 //    function Recipe(name, img) {
 //         this.name = name;
