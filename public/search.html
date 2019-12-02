@@ -1,23 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Homepage</title>
+  <title>Navigation Bar</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <link rel = "stylesheet" type = "text/css" href = "style.css" />
-  <script type="text/javascript" src="cookies.js-master/cookies.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Vollkorn:900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
-  <script
-        src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-        crossorigin="anonymous">
+
+<!-- <script type="text/javascript" src="cookies.js-master/cookies.js"></script> -->
+<link href="https://fonts.googleapis.com/css?family=Vollkorn:900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #F0F1EB;    
+    }
+    .navbar-brand {
+      font-family: 'Vollkorn', serif;
+      background-color: #4056A1;
+      color: #ffffff !important;
+      font-size: 25px;
+    }
+    .navbar-default {
+      background-color: #F0F1EB;
+      border: 0px;
+    }
+    ul.nav {
+      font-family: 'Quicksand', sans-serif;    
+    }
+    #nav-bar-search {
+      font-family: 'Quicksand', sans-serif;         
+    }
+    .hideBtn {
+      display: none !important;
+    }
+    .showBtn {
+      display: block !important;
+    }
+    h1{
+      text-align: center;
+      font-family: 'Quicksand', sans-serif;
+    }
+    .ingredients{
+      text-align: center;
+      font-size: 14px;
+    }
+    .directions{
+      text-align: left;
+      font-size: 14px;
+    }   
+    h3{
+      text-align: center;
+      font-weight: bold;
+      font-size: 24px;
+    }
+    .ing{
+      float: left;
+      width: 50%;      
+      text-align: center;
+      display: inline;
+    }
+    .imgdiv{
+      text-align: center;
+    }
+    .imager{
+      width: 40%;
+      height: width;
+    }
+    .col1{
+      font-family: 'Quicksand', sans-serif;
+      float: left;
+      width: 40%;
+      text-align: center;
+    }
+    .ingBody{
+      font-family: 'Quicksand', sans-serif;
+      float: left;
+      width: 60%;
+    }
+    .save{
+      border-radius: 25px;
+      border-width: 2px;
+      text-align: center;
+      color: #D79922;
+    }
+    .bodyRecipe{
+      text-align: center;
+    }
+    .writeReview{
+      text-align: center;
+      font-size: 24px;
+      color: #000000;
+      border-color: #000000;
+      border-width: 2px;
+      border-radius: 25px;
+    }
+    .ingredients:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    .dir{
+    }
+  </style>
+
+  <script language="javascript">
+    function signedIn() {
+      return docCookies.hasItem("username");
+    }
   </script>
 </head>
 <body>
+
+  <script language="javascript">
+    function loginCookie(username) {
+      docCookies.setItem("username", username);
+      updateUserDisplay();
+    }
+    function logoutCookie(username) {
+      docCookies.removeItem("username");
+      updateUserDisplay();
+    }
+    function searchCookie(query) {
+      docCookies.setItem("search", query);
+      alert(docCookies.getItem("search"));
+    }
+    //var id = recipe id from cookie
+  </script>
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -41,7 +151,7 @@
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li class="user-btns"><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> 
+        <li class="user-btns"><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li class="user-btns"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li class="logout-btn"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
@@ -49,80 +159,107 @@
   </div>
 </nav>
 
+<button onclick="loginCookie('llabell')">LOGIN</button>
+<button onclick="logoutCookie('llabell')">LOGOUT</button>
+<button onclick="searchCookie('pumpkin pie')">SEARCH</button>
+
 <script language="javascript">
     $(document).ready(function() {
-        docCookies.updateUserDisplay();
         $('#nav-bar-search').keypress(function(event){
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13'){
-            docCookies.setSearch($('#nav-bar-search').val());
-            window.location.href = "#"; // put search page here
-            return false;
+            alert('User has searched a recipe'); 
         }
         });
     });
-    $(document).ready(function() {
-      $(".logout-btn").click(function() {
-        docCookies.logout();
-      });
-    });
-    // gets top 20 most popular recipes based on reviews 
-    function getPopular() {
-        var request = new XMLHttpRequest();
-        request.open("GET", "https://ez-recipe.herokuapp.com/api/popular", true);
-//         var return_result = []
-        var result;
-        request.onreadystatechange = function() {
-            if (request.readyState == 4 && request.status == 200) {
-                result = request.responseText;
-                alert("hi")    
-                console.log(result); 
-                result = JSON.parse(result);
-                console.log(result)
-                for (i in result) {
-                    displayRecipe()
-//                     console.log(result[i].recipe_id)
-                }
-//                 var id_array = [];
-//                 id_array.push(result['recipe_id']);
-//                 console.log(id_array)
-//                 for (let [key, value] of Object.entries(result)) {
-//                   return_result.push(value)
-//                 }
-//                 console.log(return_result)
-            }
-            else if (request.readyState == 4 && request.status != 200) {
-                result = request.responseText;    
-                alert("hi2")
-                console.log(result); 
-            }
+    function updateUserDisplay() {
+        if (signedIn()) {
+          $("li.logout-btn").addClass("showBtn");
+          $("li.logout-btn").removeClass("hideBtn");
+          $("li.user-btns").addClass("hideBtn");
+          $("li.user-btns").removeClass("showBtn");
         }
-        request.send();
-    }
-    getPopular();
-    function displayRecipe(recipe_id) {
-        var request = new XMLHttpRequest();
-        request.open("get", "https://api.spoonacular.com/recipes/complexSearch?query=pasta&number=2/?apiKey=d8be32c9194e4bc78c0299798df2d53d", true);
-        alert("her!!e");
-        request.onreadystatechange = function() {
-            if (request.readyState == 4 && request.status == 200) {
-                result = request.responseText;
-                alert("hi spoon")    
-                console.log(result); 
-                result = JSON.parse(result);
-                console.log(result)
-//                 document.getElementById("recipeName").innerHTML = result.title;
-//                 document.getElementById("img").innerHTML = "<img class='imager' src='" + result.image + "' />";
-            }
-            else if (request.readyState == 4 && request.status != 200) {
-                result = request.responseText;    
-                console.log(result); 
-            }
+        else {
+          $("li.logout-btn").addClass("hideBtn");
+          $("li.logout-btn").removeClass("showBtn");
+          $("li.user-btns").addClass("showBtn"); 
+          $("li.user-btns").removeClass("hideBtn");         
         }
-        request.send();
     }
 </script>
-  
+  <div class="bodyRecipe"> 
+    <h1 id="recipeName"></h1>
+    <button class="save" onclick="saveGame()">Save Recipe</button>
+    <div class="col1">
+      <div id="img" class="imgdiv"></div>
+      <br />
+      <a id="rev" class="writeReview" href="#">Write a Review!</a>
+    </div>
+    <div class="ingBody">
+      <h3>Ingredients</h3>
+      <div id="ingredients" class="ingredients"></div>
+      <h3>Directions</h3>
+      <div class="directions" id="directions"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    // var ID = docCookies.getRecipe();
+    function GetRecipe() {
+      requestGen = new XMLHttpRequest();
+      requestGen.open("get", "https://api.spoonacular.com/recipes/716429/information/?apiKey=d8be32c9194e4bc78c0299798df2d53d", true);
+      // Step 3: set up event handler/callback
+      requestGen.onreadystatechange = function() {
+        if (requestGen.readyState == 4 && requestGen.status == 200) {
+          // Step 5: wait for done + success
+          result1 = requestGen.responseText;
+          result = JSON.parse(result);
+          console.log(result1);
+          //console.log(result.length);
+          var steps = result.analyzedInstructions[0].steps;
+          console.log(steps);
+          for (var i = 0; i < steps.length; i++) {
+            var num = String(steps[i].number);
+            var step = String(steps[i].step);
+            document.getElementById("directions").innerHTML += "<div id='" + i + "' class='dir'> " + num + ". " + step + "</div>";
+          }
+          var ingredients = result.extendedIngredients;
+          console.log(ingredients);
+          for (var i = 0; i < ingredients.length; i++) {
+            var name = String(ingredients[i].name);
+            var amount = String(ingredients[i].measures.us.amount + " " + ingredients[i].measures.us.unitLong);
+            document.getElementById("ingredients").innerHTML += "<div id='" + i + "' class='ing'> " + name + ": " + amount + "</div>";
+          }
+          document.getElementById("recipeName").innerHTML = result.title;
+          document.getElementById("img").innerHTML = "<img class='imager' src='" + result.image + "' />";
+        }
+        else if (requestGen.readyState == 4 && requestGen.status != 200) {
+          //document.getElementById("ingredients").innerHTML = "Something is wrong! Very sad " + requestGen.status;
+        }
+        else if (requestGen.readyState == 3) {
+          //document.getElementById("ingredients").innerHTML = "Search in progress, too impatient";
+        }
+      }
+      requestGen.send();
+    };
+    getIngredients();
+    function saveGame(){
+    }    
+    $(document).ready(function(){
+      $('#divCont img').on({
+        mouseover : function() {
+          $(this).css({
+            'cursor': 'pointer',
+          });
+        },
+        mouseout : function(){
+          $(this).css({
+            'cursor' : 'default',
+          });
+        },
+      });
+    });
+  </script>
 
 </body>
 </html>
