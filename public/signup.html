@@ -181,18 +181,6 @@ button:hover {
 </form>
 
 <script>
-	var u = document.getElementById('name');
-	var f = document.getElementById('first');
-	var l = document.getElementById('last');
-	var p = document.getElementById('pass');
-
-	  var user = { 
-        username: u,
-        firstname: f,
-        lastname: l,
-        password: p
-    };
-
 
 	function goback()
 	{
@@ -201,6 +189,19 @@ button:hover {
 
 
 	function addUser() {
+		var u = document.getElementById('name');
+		var f = document.getElementById('first');
+		var l = document.getElementById('last');
+		var p = document.getElementById('pass');
+
+	  var user = { 
+        username: u,
+        firstname: f,
+        lastname: l,
+        password: p
+    	};
+
+
         var request = new XMLHttpRequest();
         request.open("POST", "https://ez-recipe.herokuapp.com/api/users", true);
         request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
