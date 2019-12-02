@@ -332,7 +332,7 @@
     function saveReview(){
       var formInput = document.getElementById("formRev");
       review1 = {
-        rating: formInput[1].value,
+        rating: parseInt(formInput[1].value),
         upvote: true,
         review: formInput[0].value,
         username: userName,
