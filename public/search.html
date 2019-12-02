@@ -7,73 +7,63 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-<!-- <script type="text/javascript" src="cookies.js-master/cookies.js"></script> -->
-<link href="https://fonts.googleapis.com/css?family=Vollkorn:900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+  <link rel = "stylesheet" type = "text/css" href = "style.css" />
+  <script type="text/javascript" src="cookies.js-master/cookies.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Vollkorn:900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
 
 </head>
 <body>
-  
-  <div class="bodyRecipe"> 
-    <h1 id="recipeName"></h1>
-    <button class="save" onclick="saveGame()">Save Recipe</button>
-    <div class="col1">
-      <div id="img" class="imgdiv"></div>
-      <br />
-      <a id="rev" class="writeReview" href="#">Write a Review!</a>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">EZ Recipe</a>
     </div>
-    <div class="ingBody">
-      <h3>Ingredients</h3>
-      <div id="ingredients" class="ingredients"></div>
-      <h3>Directions</h3>
-      <div class="directions" id="directions"></div>
+
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">My Recipes</a></li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input id="nav-bar-search" type="text" class="form-control" placeholder="Search for a recipe">
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="user-btns"><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> 
+        <li class="user-btns"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li class="logout-btn"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
     </div>
   </div>
+</nav>
 
-  <script type="text/javascript">
-    alert("upda");
-    GetRecipe();
-    // var ID = docCookies.getRecipe();
-    function GetRecipe() {
-      requestGen = new XMLHttpRequest();
-      requestGen.open("get", "https://api.spoonacular.com/recipes/search?query=pasta&number=2?apiKey=d8be32c9194e4bc78c0299798df2d53d", true);
-      // Step 3: set up event handler/callback
-      requestGen.onreadystatechange = function() {
-        if (requestGen.readyState == 4 && requestGen.status == 200) {
-          alert("success");
-          // Step 5: wait for done + success
-          result1 = requestGen.responseText;
-          alert(result1);
-          result = JSON.parse(result);
-          console.log(result1);
+<script language="javascript">
+    $(document).ready(function() {
+        docCookies.updateUserDisplay();
+        $('#nav-bar-search').keypress(function(event){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13'){
+            docCookies.setSearch($('#nav-bar-search').val());
+            window.location.href = "#"; // put search page here
+            return false;
         }
-        else if (requestGen.readyState == 4 && requestGen.status != 200) {
-          alert("failure");
-          //document.getElementById("ingredients").innerHTML = "Something is wrong! Very sad " + requestGen.status;
-        }
-        else if (requestGen.readyState == 3) {
-          alert("in progress");
-          //document.getElementById("ingredients").innerHTML = "Search in progress, too impatient";
-        }
-      }
-      requestGen.send();
-    };  
-    $(document).ready(function(){
-      $('#divCont img').on({
-        mouseover : function() {
-          $(this).css({
-            'cursor': 'pointer',
-          });
-        },
-        mouseout : function(){
-          $(this).css({
-            'cursor' : 'default',
-          });
-        },
+        });
+    });
+    $(document).ready(function() {
+      $(".logout-btn").click(function() {
+        docCookies.logout();
       });
     });
-  </script>
+</script>
+  
 
 </body>
 </html>
