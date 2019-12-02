@@ -140,22 +140,6 @@ span.psw {
       });
     });
 
-      function addUser() {
-        var request = new XMLHttpRequest();
-        request.open("POST", "https://ez-recipe.herokuapp.com/api/users", true);
-        request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        request.onreadystatechange = function() {
-            if (request.readyState == 4 && request.status == 200) {
-                var result = request.responseText;    
-                console.log(result);  
-            }
-            else if (request.readyState == 4 && request.status != 200) {
-                var result = request.responseText;    
-                if (result == "ER_DUP_ENTRY") alert("Username is already taken! Please choose another.");
-            }
-        }
-        request.send(JSON.stringify(user));
-    }
 </script>
 
 <h1>Welome to EZ Recipe! </h1>
@@ -170,7 +154,7 @@ span.psw {
     <input type="text" placeholder="Enter Username or Email..." name="uname" required>
 
     <label for="psw"><b>Password:</b></label>
-    <input type="password" placeholder="Enter Password.." name="psw" required>
+    <input type="password" autocomplete="on" placeholder="Enter Password.." name="psw" required>
         
     <button type="submit">Login</button>
     <label>
