@@ -199,22 +199,32 @@
     <div class="col1">
       <div id="img" class="imgdiv"></div>
       <br />
-      <a id="rev" class="writeReview" href="#">Write a Review!</a>
+      <h3>Write a Review!</h3>
+      <form>
+        <textarea name="message" rows="10" cols="30"></textarea>
+        <br>
+        <button class="save" onclick="postReview()">Upload Review</button>
+      </form>
+       
     </div>
     <div class="ingBody">
       <h3>Ingredients</h3>
       <div id="ingredients" class="ingredients"></div>
       <h3>Directions</h3>
       <div class="directions" id="directions"></div>
+      <h3>Reviews</h3>
+      <div class="reviews" id="reviews"></div>
     </div>
   </div>
 
   <script type="text/javascript">
-    var ID = docCookies.getRecipe();
+    //Figure out how to get the cookie for this
+    var ID = 1003464;
+    //docCookies.getRecipe();
 
-    function GetRecipe() {
+    function getRecipe() {
       requestGen = new XMLHttpRequest();
-      requestGen.open("get", "https://api.spoonacular.com/recipes/ID/information/?apiKey=d8be32c9194e4bc78c0299798df2d53d", true);
+      requestGen.open("get", "https://api.spoonacular.com/recipes/" + ID + "/information?includeNutrition=false&apiKey=d8be32c9194e4bc78c0299798df2d53d", true);
       // Step 3: set up event handler/callback
       requestGen.onreadystatechange = function() {
         if (requestGen.readyState == 4 && requestGen.status == 200) {
@@ -222,41 +232,58 @@
           result = requestGen.responseText;
           result = JSON.parse(result);
           console.log(result);
-          //console.log(result.length);
+
+          //Instructions
           var steps = result.analyzedInstructions[0].steps;
-          console.log(steps);
           for (var i = 0; i < steps.length; i++) {
             var num = String(steps[i].number);
             var step = String(steps[i].step);
             document.getElementById("directions").innerHTML += "<div id='" + i + "' class='dir'> " + num + ". " + step + "</div>";
           }
+          //ingredients
           var ingredients = result.extendedIngredients;
-          console.log(ingredients);
           for (var i = 0; i < ingredients.length; i++) {
             var name = String(ingredients[i].name);
             var amount = String(ingredients[i].measures.us.amount + " " + ingredients[i].measures.us.unitLong);
             document.getElementById("ingredients").innerHTML += "<div id='" + i + "' class='ing'> " + name + ": " + amount + "</div>";
           }
+          //Title
           document.getElementById("recipeName").innerHTML = result.title;
+          //Image
           document.getElementById("img").innerHTML = "<img class='imager' src='" + result.image + "' />";
         }
         else if (requestGen.readyState == 4 && requestGen.status != 200) {
-          //document.getElementById("ingredients").innerHTML = "Something is wrong! Very sad " + requestGen.status;
+          document.getElementById("ingredients").innerHTML = "Something is wrong!" + requestGen.status;
         }
         else if (requestGen.readyState == 3) {
-          //document.getElementById("ingredients").innerHTML = "Search in progress, too impatient";
+          document.getElementById("ingredients").innerHTML = "Search in progress, please refresh";
         }
       }
       requestGen.send();
     };
 
+    function getReviews(){
+      request = new XMLHttpRequest();
+      request.open('get', 'ez-recipe.herokuapp.com/api/reviews/' + ID, true);
+      request.onreadystatechange = function() {
+          if (request.readyState == 4 && request.status == 200){
+              data = JSON.parse(request.responseText);
+              console.log(data);
+          }
+      }
+      request.send();
+    }
 
-
-
-    getIngredients();
+    getRecipe();
+    getReviews();
     function saveGame(){
 
     }    
+
+
+    function postReview(){
+
+    }
     $(document).ready(function(){
       $('#divCont img').on({
         mouseover : function() {
