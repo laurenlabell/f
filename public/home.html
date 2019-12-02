@@ -111,9 +111,8 @@
                 console.log(result); 
                 result = JSON.parse(result);
                 console.log(result)
-                document.getElementById("recipeName").innerHTML = result.title;
-                document.getElementById("img").innerHTML = "<img class='imager' src='" + result.image + "' />";
-
+//                 document.getElementById("recipeName").innerHTML = result.title;
+//                 document.getElementById("img").innerHTML = "<img class='imager' src='" + result.image + "' />";
             }
             else if (request.readyState == 4 && request.status != 200) {
                 result = request.responseText;    
@@ -122,78 +121,6 @@
         }
         request.send();
     }
-  
-//    function Recipe(name, img) {
-//         this.name = name;
-//         this.img = img;
-//     }
-//     function createRecipeArray() {
-//         var allPopular = new Array();
-//         for 
-//     }
-//         var allTeas = new Array();
-        
-//         allTeas[0] = new Tea("Buddha's Blend",
-//                              "Teas/Buddha'sBlend.jpg",
-//                              10.98);
-//         allTeas[1] = new Tea("Chocolate Chili Chai",
-//                              "Teas/ChocolateChiliChai.jpg",
-//                              9.98);
-//         allTeas[2] = new Tea("Coco Mango Chai",
-//                              "Teas/CocoMangoChai.jpg",
-//                              8.98);
-//         allTeas[3] = new Tea("Cool Eucalyptus",
-//                              "Teas/CoolEucalyptus.jpg",
-//                              8.98);
-//         allTeas[4] = new Tea("Flamingo Fresca",
-//                              "Teas/FlamingoFresca.jpg",
-//                              8.98);
-//         allTeas[5] = new Tea("Jasmine Oolong",
-//                              "Teas/JasmineOolong.jpg",
-//                              9.98);
-//         allTeas[6] = new Tea("Lemon Cayenne Cleanse",
-//                              "Teas/LemonCayenneCleanse.jpg",
-//                              9.98);
-//         allTeas[7] = new Tea("Organic Cinnamon Rooibois Chai",
-//                              "Teas/OrganicCinnamonRooiboisChai.jpg",
-//                              8.98);
-//         allTeas[8] = new Tea("Organic Earl Grey Rooibos",
-//                              "Teas/OrganicEarlGreyRooibos.jpg",
-//                              9.98);
-//         allTeas[9] = new Tea("Organic Guayusa",
-//                              "Teas/OrganicGuayusa.jpg",
-//                              9.98);
-//         allTeas[10] = new Tea("Organic Happy Valley Darjeeling",
-//                              "Teas/OrganicHappyValleyDarjeeling.jpg",
-//                              8.98);
-//         allTeas[11] = new Tea("Organic Japenese Sencha",
-//                              "Teas/OrganicJapeneseSencha.jpg",
-//                              10.98);
-//         allTeas[12] = new Tea("Pitaya Power",
-//                              "Teas/PitayaPower.jpg",
-//                              9.98);
-//         allTeas[13] = new Tea("Sheng Pu'erh",
-//                              "Teas/ShengPu'erh.jpg",
-//                              10.98);
-//         allTeas[14] = new Tea("Valerian Nights",
-//                              "Teas/ValerianNights.jpg",
-//                              9.98);
-//         allTeas[15] = new Tea("Vanilla Matcha",
-//                              "Teas/VanillaMatcha.jpg",
-//                              9.98);
-//     <div class="column">
-//       <img src="underwater.jpg">
-//       <img src="ocean.jpg">
-//       <img src="wedding.jpg">
-//       <img src="mountainskies.jpg">
-//       <img src="rocks.jpg">
-//       <img src="underwater.jpg">
-//     </div>
-//     function displayPopular() {
-//         getPopular();
-        
-        
-//     }
 </script>
   
 
