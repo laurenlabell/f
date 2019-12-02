@@ -128,6 +128,7 @@ app.post('/api/users', (req, res) => {
     const { error } = validateUser(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     const user = req.body;
+    console.log(req.body);
     const sql = 'insert into user set ?';
     const query = db.query(sql, user, (err, result) => {
         if (err) return res.status(400).send(err.code);
