@@ -148,7 +148,7 @@ span.psw {
    
  <hr>
 
-<form id = "loginform" action="login()" method="post">
+<form id = "loginform" action="#" method="post">
 
     <label for="username"><b>Username:</b></label>
     <input type="text" placeholder="Enter Username or Email..." name="username" required>
@@ -171,23 +171,6 @@ span.psw {
 
 
 <script language="javascript">
-    $(document).ready(function() {
-        docCookies.updateUserDisplay();
-        $('#nav-bar-search').keypress(function(event){
-        var keycode = (event.keyCode ? event.keyCode : event.which);
-        if (keycode == '13'){
-            docCookies.setSearch($('#nav-bar-search').val());
-            window.location.href = "#"; // put search page here
-            return false;
-        }
-        });
-    });
-    $(document).ready(function() {
-      $(".logout-btn").click(function() {
-        docCookies.logout();
-      });
-    });
-
     $('#loginform').on('submit', function(username){
       docCookies.login();
       console.log('you submitted login form');
