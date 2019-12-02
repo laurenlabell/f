@@ -106,6 +106,12 @@
     .dir{
 
     }
+    .rating{
+      border-radius: 25px;
+      border: 2px solid #4056A1;
+      font-size: 18px;
+      text-align: center;
+    }
   </style>
 
   <script language="javascript">
@@ -200,12 +206,26 @@
       <div id="img" class="imgdiv"></div>
       <br />
       <h3>Write a Review!</h3>
-      <form>
+      <form id="formRev">
         <textarea name="message" rows="10" cols="30"></textarea>
         <br>
-        <button class="save" onclick="postReview()">Upload Review</button>
+        Rating<br/>
+        <select class="rating" id="rating">
+            <option value="0">0</option>
+            <option value="0.5">0.5</option>
+            <option value="1">1</option>
+            <option value="1.5">1.5</option>
+            <option value="2">2</option>
+            <option value="2.5">2.5</option>
+            <option value="3">3</option>
+            <option value="3.5">3.5</option>
+            <option value="4">4</option>
+            <option value="4.5">4.5</option>
+            <option value="5">5</option>
+        </select>   
       </form>
-       
+      <br />
+      <button class="save" onclick="saveReview()">Upload Review</button>
     </div>
     <div class="ingBody">
       <h3>Ingredients</h3>
@@ -281,11 +301,38 @@
     getReviews();
     function saveGame(){
 
-    }    
+    } 
 
+    var review;
+    function rev(rating, upvote, description, user, recipe_id){
+      this.rating = rating;
+      this.upvote = upvote;
+      this.review = description;
+      this.username = user;
+      this.recipe_id = recipe_id;
+    }
+
+    function saveReview(){
+      var formInput = document.getElementById("formRev");
+      review = new rev(formInput[1].value ,true, formInput[0].value, "", ID);
+      postReview();
+    }
 
     function postReview(){
-
+        var request = new XMLHttpRequest();
+        request.open("POST", "https://ez-recipe.herokuapp.com/api/users", true);
+        request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                var result = request.responseText;    
+                console.log(result);  
+            }
+            else if (request.readyState == 4 && request.status != 200) {
+                var result = request.responseText;    
+                if (result == "ER_DUP_ENTRY") alert("Username is already taken! Please choose another.");
+            }
+        }
+        request.send(JSON.stringify(review));
     }
     $(document).ready(function(){
       $('#divCont img').on({
