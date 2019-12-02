@@ -158,7 +158,7 @@ span.psw {
         
     <button type="submit">Login</button>
     <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
+    <input type="checkbox" checked="checked" name="remember"> Remember me
     </label>
 
     <p style ="text-align: center; font-weight: bold;"> Not a member? <a href="signup.html"> Sign up for EZ Recipe today! </a>
@@ -173,12 +173,17 @@ span.psw {
 <script language="javascript">
     var user = $('#username').val();
     $('#loginform').on('submit', function(user){
-      docCookies.login();
+      docCookies.login();{
+        if (!user){
+          alert("This username doesn't exist, try again!");
+        }
+      }
       console.log('you submitted login form');
     });
     
     $('#loginform').on('submit',function(){
       docCookies.signedIn();
+      console.log("You are signed in");
     });
 </script>
   
