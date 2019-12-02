@@ -114,8 +114,8 @@ span.psw {
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li class="user-btns"><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> 
-        <li class="user-btns"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li class="user-btns"><a href="signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> 
+        <li class="user-btns"><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li class="logout-btn"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
@@ -148,7 +148,7 @@ span.psw {
    
  <hr>
 
-<form id = "loginform" action="https://ez-recipe.herokuapp.com/login.html" method="post">
+<form id = "loginform" action="/api/users" method="post">
 
     <label for="username"><b>Username:</b></label>
     <input type="text" placeholder="Enter Username or Email..." name="username" required>
