@@ -77,8 +77,8 @@
                 var result = request.responseText;
                 alert("hi")    
                 console.log(result); 
-                for (i in result) {
-                  return_result.push(result[i])
+                for (let key in result) {
+                  return_result.push(result[key])
                 }
                 console.log(return_result)
             }
