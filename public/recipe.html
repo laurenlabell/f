@@ -320,18 +320,24 @@
 
     } 
 
-    var review;
-    function rev(rating, upvote, description, user, recipe_id){
-      this.rating = rating;
-      this.upvote = upvote;
-      this.review = description;
-      this.username = user;
-      this.recipe_id = recipe_id;
-    }
+    var review1;
+//     function rev(rating, upvote, description, user, recipe_id){
+//       this.rating = rating;
+//       this.upvote = upvote;
+//       this.review = description;
+//       this.username = user;
+//       this.recipe_id = recipe_id;
+//     }
 
     function saveReview(){
       var formInput = document.getElementById("formRev");
-      review = new rev(formInput[1].value ,true, formInput[0].value, userName, ID);
+      review1 = {
+        rating: formInput[1].value,
+        upvote: true,
+        review: formInput[0].value,
+        username: userName,
+        recipe_id: ID,
+      }
       postReview();
     }
 
@@ -349,7 +355,7 @@
                 if (result == "ER_DUP_ENTRY") alert("Something went wrong inserting review");
             }
         }
-        request.send(JSON.stringify(review));
+        request.send(JSON.stringify(review1));
     }
     $(document).ready(function(){
       $('#divCont img').on({
