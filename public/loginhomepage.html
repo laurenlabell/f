@@ -148,13 +148,13 @@ span.psw {
    
  <hr>
 
-<form id = "loginform" action="#" method="post">
+<form id = "loginform" action="login()" method="post">
 
-    <label for="uname"><b>Username:</b></label>
-    <input type="text" placeholder="Enter Username or Email..." name="uname" required>
+    <label for="username"><b>Username:</b></label>
+    <input type="text" placeholder="Enter Username or Email..." name="username" required>
 
-    <label for="psw"><b>Password:</b></label>
-    <input type="password" autocomplete="on" placeholder="Enter Password.." name="psw" required>
+    <label for="password"><b>Password:</b></label>
+    <input type="password" autocomplete="on" placeholder="Enter Password.." name="password" required>
         
     <button type="submit">Login</button>
     <label>
@@ -186,6 +186,15 @@ span.psw {
       $(".logout-btn").click(function() {
         docCookies.logout();
       });
+    });
+
+    $('#loginform').on('submit', function(username){
+      docCookies.login();
+      console.log('you submitted login form');
+    });
+    
+    $('#loginform').on('submit',function(){
+      docCookies.signedIn();
     });
 </script>
   
