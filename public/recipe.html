@@ -304,7 +304,7 @@
                   var user = String(data[i].username);
                   var rating = String(data[i].rating);
                   var reviewtext = String(data[i].review);
-                  document.getElementById("reviews").innerHTML += "<div id='" + i + "'class='revHead'> " + user + ": " + rating + "</div>";
+                  document.getElementById("reviews").innerHTML += "<div id='" + i + "'class='revHead'> " + user + ": " + rating + "/5</div>";
                   document.getElementById("reviews").innerHTML += "<div id='" + i + "'> " + reviewtext + "</div>";
                 }
               }
