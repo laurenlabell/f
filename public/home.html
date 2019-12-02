@@ -71,22 +71,39 @@
     function getPopular() {
         var request = new XMLHttpRequest();
         request.open("GET", "https://ez-recipe.herokuapp.com/api/popular", true);
+        var return_result = []
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
                 var result = request.responseText;
                 alert("hi")    
-                console.log(result);  
+                console.log(result); 
+                for (i in result) {
+                  return_result.push(i)
+                }
+                console.log(return_result)
             }
             else if (request.readyState == 4 && request.status != 200) {
                 var result = request.responseText;    
                 alert("hi2")
                 console.log(result); 
-                alert(result);
             }
         }
         request.send();
     }
     getPopular();
+//     <div class="column">
+//       <img src="underwater.jpg">
+//       <img src="ocean.jpg">
+//       <img src="wedding.jpg">
+//       <img src="mountainskies.jpg">
+//       <img src="rocks.jpg">
+//       <img src="underwater.jpg">
+//     </div>
+//     function displayPopular() {
+//         getPopular();
+        
+        
+//     }
 </script>
   
 
