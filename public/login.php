@@ -1,4 +1,12 @@
-<?php
+<!DOCTYPE html>
+<html>
+<head>
+	<title> login PHP</title>
+</head>
+<body>
+	<?php
 	$username = $_POST['firstname'];
-	$password = $_POST['password'];
-?>
+	?>
+
+</body>
+</html>
