@@ -111,8 +111,8 @@
                 console.log(result); 
                 result = JSON.parse(result);
                 console.log(result)
-                document.getElementById(result[recipe_id]).innerHTML = result.title;
-                document.getElementById(result[recipe_id]).innerHTML = "<img class='imager' src='" + result.image + "' />";
+//                 document.getElementById("recipeName").innerHTML = result.title;
+//                 document.getElementById("img").innerHTML = "<img class='imager' src='" + result.image + "' />";
             }
             else if (request.readyState == 4 && request.status != 200) {
                 result = request.responseText;    
