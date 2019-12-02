@@ -355,6 +355,7 @@
                 if (result == "ER_DUP_ENTRY") alert("Something went wrong inserting review");
             }
         }
+        console.log(review1);
         request.send(JSON.stringify(review1));
     }
     $(document).ready(function(){
