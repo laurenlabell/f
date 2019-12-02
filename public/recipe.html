@@ -270,6 +270,9 @@
               data = JSON.parse(request.responseText);
               console.log(data);
           }
+          if (request.status == 404){
+            document.getElementById("reviews").innerHTML = "No reviews for this recipe yet";
+          }
       }
       request.send();
     }
