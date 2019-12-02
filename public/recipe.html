@@ -284,14 +284,22 @@
 
     function getReviews(){
       request = new XMLHttpRequest();
-      request.open('get', '/api/reviews/' + ID, true);
+      //request.open('get', '/api/reviews/' + ID, true);
+      request.open('get', '/api/reviews/3', true);
       request.onreadystatechange = function() {
           if (request.readyState == 4 && request.status == 200){
               data = JSON.parse(request.responseText);
               console.log(data);
-          }
-          if (request.status == 404){
-            document.getElementById("reviews").innerHTML = "No reviews for this recipe yet";
+              if (data.length == 0){
+                document.getElementById("reviews").innerHTML = "No reviews for this recipe yet";
+              }
+              else{
+                 for (var i = 0; i < data.length; i++) {
+                  //var name = String(data[i].name);
+                  //var amount = String(data[i].measures.us.amount + " " + data[i].measures.us.unitLong);
+                  //document.getElementById("reviews").innerHTML += "<div id='" + i + "'> " + name + ": " + amount + "</div>";
+                }
+              }
           }
       }
       request.send();
