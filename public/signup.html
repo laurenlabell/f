@@ -153,14 +153,17 @@ button:hover {
     <h1>Sign Up for EZ Recipe Access!</h1>
     <p style = "font-style: italic;"> As an EZ Recipe member you will be able search for, save, and rate your favorite recipies. Additionally, we will generate shopping lists for you based on your saved recipes! <b> Fill out the form below to get started. </b> </p>
     <hr>
+
+    <label for="username"><b>Username/Email...: </b></label>
+    <input type="text" placeholder="Enter Username/Email..." id = "username" name="username" required>
+
     <label for="firstname"><b>First Name:</b></label>
     <input type="text" placeholder="Enter First Name..." id="firstname" name="firstname" required>
 
 	<label for="lastname"><b>Last Name: </b></label>
     <input type="text" placeholder="Enter Last Name..." id = "lastname" name="lastname" required>
 
-    <label for="username"><b>Username/Email...: </b></label>
-    <input type="text" placeholder="Enter Username/Email..." id = "name" name="email" required>
+  
 
     <label for="pass"><b>Password: </b></label>
     <input type="password" placeholder="Enter Password..." id = "password" autocomplete="on" name="password" required>
@@ -181,22 +184,20 @@ button:hover {
 </form>
 
 <script>
+
 	function goback()
 	{
-		location.replace("loginhomepage.html");
+		location.replace("loginhomepage.html")
 	}
-	
-	var u = document.getElementById("username").value;
-	console.log(u);
+
 
 	function addUser() {
-		console.log("in addUser function");
 		var u = $('#username').val();
 		var f = $('#firstname').val();
 		var l = $('#lastname').val();
 		var p = $('#password').val();
-		console.log(u, f, l, p);
-	var user = { 
+
+	    var user = { 
         username: u,
         firstname: f,
         lastname: l,
