@@ -45,12 +45,10 @@
     .ingredients{
       text-align: center;
       font-size: 14px;
-
     }
     .directions{
       text-align: left;
       font-size: 14px;
-
     }   
     h3{
       text-align: center;
@@ -103,9 +101,6 @@
       display: table;
       clear: both;
     }
-    .dir{
-
-    }
     .rating{
       border-radius: 25px;
       border: 2px solid #4056A1;
@@ -133,17 +128,14 @@
       docCookies.setItem("username", username);
       updateUserDisplay();
     }
-
     function logoutCookie(username) {
       docCookies.removeItem("username");
       updateUserDisplay();
     }
-
     function searchCookie(query) {
       docCookies.setItem("search", query);
       alert(docCookies.getItem("search"));
     }
-    //var id = recipe id from cookie
   </script>
 
 <nav class="navbar navbar-default">
@@ -189,7 +181,6 @@
         }
         });
     });
-
     function updateUserDisplay() {
         if (signedIn()) {
           $("li.logout-btn").addClass("showBtn");
@@ -205,9 +196,11 @@
         }
     }
 </script>
+
+
   <div class="bodyRecipe"> 
     <h1 id="recipeName"></h1>
-    <button class="save" onclick="saveGame()">Save Recipe</button>
+    <button class="save" onclick="saveRecipe()">Save Recipe</button>
     <div class="col1">
       <div id="img" class="imgdiv"></div>
       <br />
@@ -245,7 +238,7 @@
     var ID = 1003464;
     var userName = "acervantes";
     //docCookies.getRecipe();
-
+    //docCookies.getUsername();
     function getRecipe() {
       requestGen = new XMLHttpRequest();
       requestGen.open("get", "https://api.spoonacular.com/recipes/" + ID + "/information?includeNutrition=false&apiKey=d8be32c9194e4bc78c0299798df2d53d", true);
@@ -256,7 +249,6 @@
           result = requestGen.responseText;
           result = JSON.parse(result);
           console.log(result);
-
           //Instructions
           var steps = result.analyzedInstructions[0].steps;
           for (var i = 0; i < steps.length; i++) {
@@ -286,6 +278,8 @@
       requestGen.send();
     };
 
+
+    var users_reviewed = [];
     function getReviews(){
       request = new XMLHttpRequest();
       //request.open('get', '/api/reviews/' + ID, true);
@@ -300,6 +294,7 @@
               else{
                  for (var i = 0; i < data.length; i++) {
                   var user = String(data[i].username);
+                  users_reviewed.push(user);
                   var rating = String(data[i].rating);
                   var reviewtext = String(data[i].review);
                   document.getElementById("reviews").innerHTML += "<div id='" + i + "'class='revHead'> " + user + ": " + rating + "/5</div>";
@@ -310,23 +305,38 @@
       }
       request.send();
     }
-
     getRecipe();
     getReviews();
-    function saveGame(){
+    function saveRecipe(){
+      save = {
+        username: userName,
+        recipe_id: 1,
+      }
+      var request = new XMLHttpRequest();
+      request.open("POST", "https://ez-recipe.herokuapp.com/api/users", true);
+      request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      request.onreadystatechange = function() {
+          if (request.readyState == 4 && request.status == 200) {
+              var result = request.responseText;    
+              console.log(result);  
+          }
+          else if (request.readyState == 4 && request.status != 200) {
+              var result = request.responseText;    
+              if (result == "ER_DUP_ENTRY") alert("Something went wrong inserting review");
+          }
+      }
+      request.send(JSON.stringify(save));
+    }
 
-    } 
 
     var review1;
-//     function rev(rating, upvote, description, user, recipe_id){
-//       this.rating = rating;
-//       this.upvote = upvote;
-//       this.review = description;
-//       this.username = user;
-//       this.recipe_id = recipe_id;
-//     }
-
     function saveReview(){
+      for (var i = 0; i < users_reviewed.length; i++) {
+        if (users_reviewed[i] == userName){
+          alert("You have already made a review for this recipe");
+          return;
+        }
+      }
       var formInput = document.getElementById("formRev");
       review1 = {
         rating: parseInt(formInput[1].value),
@@ -337,7 +347,6 @@
       }
       postReview();
     }
-
     function postReview(){
         var request = new XMLHttpRequest();
         request.open("POST", "https://ez-recipe.herokuapp.com/api/reviews", true);
@@ -352,7 +361,6 @@
                 if (result == "ER_DUP_ENTRY") alert("Something went wrong inserting review");
             }
         }
-        console.log(review1);
         request.send(JSON.stringify(review1));
     }
     $(document).ready(function(){
