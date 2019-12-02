@@ -70,7 +70,7 @@
     // gets top 20 most popular recipes based on reviews 
     function getPopular() {
         var request = new XMLHttpRequest();
-        request.open("GET", "https://ez-recipe.herokuapp.com/api/popular/llabell", true);
+        request.open("GET", "https://ez-recipe.herokuapp.com/api/popular", true);
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
                 var result = request.responseText;
