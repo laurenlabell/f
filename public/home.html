@@ -65,6 +65,7 @@
 
     // get a particular user - only difference is we add username at end of url
     function getPopular() {
+        alert("in popular")
         var request = new XMLHttpRequest();
         request.open("GET", "https://ez-recipe.herokuapp.com/api/popular/llabell", true);
         request.onreadystatechange = function() {
@@ -75,6 +76,7 @@
             }
             else if (request.readyState == 4 && request.status != 200) {
                 var result = request.responseText;    
+                alert("hi2")
                 console.log(result); 
                 alert(result);
             }
