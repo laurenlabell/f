@@ -219,9 +219,6 @@
           alert(result1);
           result = JSON.parse(result);
           console.log(result1);
-          }
-          document.getElementById("recipeName").innerHTML = result.title;
-          document.getElementById("img").innerHTML = "<img class='imager' src='" + result.image + "' />";
         }
         else if (requestGen.readyState == 4 && requestGen.status != 200) {
           alert("failure");
