@@ -102,7 +102,7 @@
     getPopular();
     function displayRecipe(recipe_id) {
         var request = new XMLHttpRequest();
-        request.open("get", "https://api.spoonacular.com/recipes/complexSearch?query=pasta&number=2?apiKey=d8be32c9194e4bc78c0299798df2d53d", true);
+        request.open("get", "https://api.spoonacular.com/recipes/complexSearch?query=pasta&number=2/?apiKey=d8be32c9194e4bc78c0299798df2d53d", true);
         alert("her!!e");
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
