@@ -37,7 +37,7 @@
     // var ID = docCookies.getRecipe();
     function GetRecipe() {
       requestGen = new XMLHttpRequest();
-      requestGen.open("get", "https://api.spoonacular.com/recipes/716429/information/?apiKey=d8be32c9194e4bc78c0299798df2d53d", true);
+      requestGen.open("get", "https://api.spoonacular.com/recipes/search?query=pasta&number=2/?apiKey=d8be32c9194e4bc78c0299798df2d53d", true);
       // Step 3: set up event handler/callback
       requestGen.onreadystatechange = function() {
         if (requestGen.readyState == 4 && requestGen.status == 200) {
