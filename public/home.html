@@ -77,8 +77,8 @@
                 var result = request.responseText;
                 alert("hi")    
                 console.log(result); 
-                for (let key in result) {
-                  return_result.push(result[key])
+                for (let [key, value] of Object.entries(result)) {
+                  return_result.push(value)
                 }
                 console.log(return_result)
             }
