@@ -189,12 +189,12 @@ button:hover {
 
 
 	function addUser() {
-		var u = document.getElementById('name');
-		var f = document.getElementById('first');
-		var l = document.getElementById('last');
-		var p = document.getElementById('pass');
+		var u = $('#name').val();
+		var f = $('#first').val();
+		var l = $('#last').val();
+		var p = $('#pass').val();
 
-	  var user = { 
+	    var user = { 
         username: u,
         firstname: f,
         lastname: l,
