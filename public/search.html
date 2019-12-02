@@ -204,6 +204,7 @@
   </div>
 
   <script type="text/javascript">
+    alert("u");
     GetRecipe();
     // var ID = docCookies.getRecipe();
     function GetRecipe() {
@@ -218,20 +219,6 @@
           alert(result1);
           result = JSON.parse(result);
           console.log(result1);
-          //console.log(result.length);
-          var steps = result.analyzedInstructions[0].steps;
-          console.log(steps);
-          for (var i = 0; i < steps.length; i++) {
-            var num = String(steps[i].number);
-            var step = String(steps[i].step);
-            document.getElementById("directions").innerHTML += "<div id='" + i + "' class='dir'> " + num + ". " + step + "</div>";
-          }
-          var ingredients = result.extendedIngredients;
-          console.log(ingredients);
-          for (var i = 0; i < ingredients.length; i++) {
-            var name = String(ingredients[i].name);
-            var amount = String(ingredients[i].measures.us.amount + " " + ingredients[i].measures.us.unitLong);
-            document.getElementById("ingredients").innerHTML += "<div id='" + i + "' class='ing'> " + name + ": " + amount + "</div>";
           }
           document.getElementById("recipeName").innerHTML = result.title;
           document.getElementById("img").innerHTML = "<img class='imager' src='" + result.image + "' />";
@@ -246,10 +233,7 @@
         }
       }
       requestGen.send();
-    };
-    //getIngredients();
-    function saveGame(){
-    }    
+    };  
     $(document).ready(function(){
       $('#divCont img').on({
         mouseover : function() {
