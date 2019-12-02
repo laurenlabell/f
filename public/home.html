@@ -11,7 +11,11 @@
   <script type="text/javascript" src="cookies.js-master/cookies.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Vollkorn:900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
-
+  <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+  </script>
 </head>
 <body>
 
@@ -65,7 +69,6 @@
 
     // gets top 20 most popular recipes based on reviews 
     function getPopular() {
-        alert("in popular")
         var request = new XMLHttpRequest();
         request.open("GET", "https://ez-recipe.herokuapp.com/api/popular/llabell", true);
         request.onreadystatechange = function() {
