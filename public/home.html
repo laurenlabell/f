@@ -45,6 +45,8 @@
         <li class="user-btns"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li class="logout-btn"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
+      <div id="recipeName" class="name"></div>
+      <div id="img" class="image"></div>
     </div>
   </div>
 </nav>
@@ -104,7 +106,6 @@
     function displayRecipe(recipe_id) {
         var request = new XMLHttpRequest();
         request.open("get", "https://api.spoonacular.com/recipes/"+ recipe_id +"/information?includeNutrition=false&apiKey=a744ad1bef3247ff96b52a616dac6472", true);
-//         request.open("get", "https://api.spoonacular.com/recipes/search?apiKey=d8be32c9194e4bc78c0299798df2d53d", true);
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
                 result = request.responseText;
@@ -112,8 +113,8 @@
                 console.log(result); 
                 result = JSON.parse(result);
                 console.log(result)
-//                 document.getElementById("recipeName").innerHTML = result.title;
-//                 document.getElementById("img").innerHTML = "<img class='imager' src='" + result.image + "' />";
+                document.getElementById("recipeName").innerHTML = result.title;
+                document.getElementById("img").innerHTML = "<img class='imager' src='" + result.image + "' />";
             }
             else if (request.readyState == 4 && request.status != 200) {
                 result = request.responseText;    
