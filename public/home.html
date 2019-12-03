@@ -9,20 +9,20 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link rel = "stylesheet" type = "text/css" href = "style.css" />
   <style>
-    .imagesContainer {
+    div.imagesContainer {
         display: flex;
         flex-wrap: wrap;
         padding: 0 4px;
       }
 
       /* Create four equal columns that sits next to each other */
-      .column {
+      div.column {
         flex: 25%;
         max-width: 25%;
         padding: 0 4px;
       }
 
-      .column .img {
+      div.column .img {
         margin-top: 8px;
         vertical-align: middle;
         width: 100%;
@@ -65,6 +65,8 @@
         <li class="user-btns"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li class="logout-btn"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
+      <br/>
+      <br/>
       <div id="imagesContainer">
         <div id="column">
           <div id="recipeName0" class="name"></div>
