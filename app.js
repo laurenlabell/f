@@ -6,7 +6,7 @@ const mysql = require('mysql');
 app.use(express.json());
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', 'ez-recipe.herokuapp.com');
   next();
 });
 
