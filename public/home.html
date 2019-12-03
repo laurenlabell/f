@@ -149,7 +149,7 @@
     getPopular();
     function displayRecipe(recipe_id, count) {
         var request = new XMLHttpRequest();
-        request.open("get", "https://api.spoonacular.com/recipes/"+ recipe_id +"/information?includeNutrition=false&apiKey=a744ad1bef3247ff96b52a616dac6472", true);
+        request.open("get", "https://api.spoonacular.com/recipes/"+ recipe_id +"/information?includeNutrition=false?apiKey=a744ad1bef3247ff96b52a616dac6472", true);
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
                 result = request.responseText;
