@@ -135,7 +135,7 @@
 
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#">Home</a></li>
+        <li><a href="home.html">Home</a></li>
         <li><a href="#">My Recipes</a></li>
       </ul>
       <form class="navbar-form navbar-left">
@@ -144,7 +144,7 @@
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li class="user-btns"><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li class="user-btns"><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> 
         <li class="user-btns"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li class="logout-btn"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
@@ -152,33 +152,23 @@
   </div>
 </nav>
 
-<button onclick="loginCookie('llabell')">LOGIN</button>
-<button onclick="logoutCookie('llabell')">LOGOUT</button>
-<button onclick="searchCookie('pumpkin pie')">SEARCH</button>
-
 <script language="javascript">
     $(document).ready(function() {
+        docCookies.updateUserDisplay();
         $('#nav-bar-search').keypress(function(event){
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13'){
-            alert('User has searched a recipe'); 
+            docCookies.setSearch($('#nav-bar-search').val());
+            window.location.href = "http://ez-recipe.herokuapp.com/search.html"; // put search page here
+            return false;
         }
         });
     });
-    function updateUserDisplay() {
-        if (signedIn()) {
-          $("li.logout-btn").addClass("showBtn");
-          $("li.logout-btn").removeClass("hideBtn");
-          $("li.user-btns").addClass("hideBtn");
-          $("li.user-btns").removeClass("showBtn");
-        }
-        else {
-          $("li.logout-btn").addClass("hideBtn");
-          $("li.logout-btn").removeClass("showBtn");
-          $("li.user-btns").addClass("showBtn"); 
-          $("li.user-btns").removeClass("hideBtn");         
-        }
-    }
+    $(document).ready(function() {
+      $(".logout-btn").click(function() {
+        docCookies.logout();
+      });
+    });
 </script>
 
 
