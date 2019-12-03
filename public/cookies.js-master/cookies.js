@@ -76,6 +76,9 @@ var docCookies = {
   setSearch: function (search) {
     this.setItem("search", search);
   },
+  getUsername: function() {
+    return this.getItem("username");
+  },
   logout: function () { 
     this.removeItem("username");
     this.updateUserDisplay();
