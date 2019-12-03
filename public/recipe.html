@@ -308,7 +308,7 @@
     getRecipe();
     getReviews();
     function saveRecipe(){
-      save = {
+      var save = {
         username: userName,
         recipe_id: 1,
       }
@@ -325,6 +325,7 @@
               if (result == "ER_DUP_ENTRY") alert("Something went wrong inserting review");
           }
       }
+      console.log(save);
       request.send(JSON.stringify(save));
     }
 
