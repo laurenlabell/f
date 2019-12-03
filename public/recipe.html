@@ -97,6 +97,25 @@
      font-weight: bold;
      text-align: center;
     }
+    /* Media queries control which nav bar to display */
+    @media screen and (max-width: 550px) {
+        .nav {
+            visibility: hidden;
+        }
+        #menuBars {
+            visibility: visible;
+        }
+    }
+    @media screen and (min-width: 550px) {
+        .nav {
+            visibility: visible;
+        }
+        div.icon {
+            visibility: hidden;
+        }
+        div.overlay {
+            visibility: hidden;               
+        }
   </style>
 
   <script language="javascript">
