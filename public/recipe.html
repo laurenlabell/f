@@ -213,6 +213,29 @@
     var userName = "acervantes";
     //docCookies.getRecipe();
     //docCookies.getUsername();
+
+
+    function addRecipe(){
+      var recipe = {
+        recipe_id: ID,
+      } 
+      var request = new XMLHttpRequest();
+      request.open("POST", "https://ez-recipe.herokuapp.com/api/recipes", true);
+      request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      request.onreadystatechange = function() {
+          if (request.readyState == 4 && request.status == 200) {
+              var result = request.responseText;    
+              console.log(result);  
+          }
+          else if (request.readyState == 4 && request.status != 200) {
+              var result = request.responseText;    
+              if (result == "ER_DUP_ENTRY") alert("Something went wrong inserting review");
+          }
+      }
+      request.send(JSON.stringify(recipe));
+    }    
+
+
     function getRecipe() {
       requestGen = new XMLHttpRequest();
       requestGen.open("get", "https://api.spoonacular.com/recipes/" + ID + "/information?includeNutrition=false&apiKey=d8be32c9194e4bc78c0299798df2d53d", true);
@@ -285,8 +308,9 @@
     function saveRecipe(){
       var save = {
         username: userName,
-        recipe_id: 1,
+        recipe_id: ID,
       }
+      addRecipe();
       var request = new XMLHttpRequest();
       request.open("POST", "https://ez-recipe.herokuapp.com/api/saves", true);
       request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -320,6 +344,7 @@
         username: userName,
         recipe_id: 1,
       }
+      addRecipe();
       postReview();
     }
     function postReview(){
