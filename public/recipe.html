@@ -216,6 +216,19 @@
 
 
     function addRecipe(){
+      request = new XMLHttpRequest();
+      request.open('get', '/api/recipes/' + ID, true);
+      request.onreadystatechange = function() {
+          if (request.readyState == 4 && request.status == 200){
+              data = JSON.parse(request.responseText);
+              if (data.length == 0){
+                postTheNewValue();
+              }
+          }
+      }
+      request.send();      
+    }    
+    function postTheNewValue(){
       var recipe = {
         recipe_id: ID,
       } 
@@ -234,8 +247,7 @@
       }
       console.log(recipe);
       request.send(JSON.stringify(recipe));
-    }    
-
+    }
 
     function getRecipe() {
       requestGen = new XMLHttpRequest();
