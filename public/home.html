@@ -8,6 +8,26 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link rel = "stylesheet" type = "text/css" href = "style.css" />
+  <style>
+  .imagesContainer {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0 4px;
+    }
+
+    /* Create four equal columns that sits next to each other */
+    .column {
+      flex: 25%;
+      max-width: 25%;
+      padding: 0 4px;
+    }
+
+    .column .img {
+      margin-top: 8px;
+      vertical-align: middle;
+      width: 100%;
+    }
+  </style>
   <script type="text/javascript" src="cookies.js-master/cookies.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Vollkorn:900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
@@ -45,30 +65,38 @@
         <li class="user-btns"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li class="logout-btn"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
-      <div id="recipeName0" class="name"></div>
-      <div id="img0" class="image"></div>
-      <div id="recipeName1" class="name"></div>
-      <div id="img1" class="image"></div>
-      <div id="recipeNam3" class="name"></div>
-      <div id="img3" class="image"></div>
-      <div id="recipeName4" class="name"></div>
-      <div id="img4" class="image"></div>
-      <div id="recipeName5" class="name"></div>
-      <div id="img5" class="image"></div>
-      <div id="recipeName6" class="name"></div>
-      <div id="img6" class="image"></div>
-      <div id="recipeName7" class="name"></div>
-      <div id="img7" class="image"></div>
-      <div id="recipeName8" class="name"></div>
-      <div id="img8" class="image"></div>
-      <div id="recipeName9" class="name"></div>
-      <div id="img9" class="image"></div>
-      <div id="recipeName10" class="name"></div>
-      <div id="img10" class="image"></div>
-      <div id="recipeName11" class="name"></div>
-      <div id="img11" class="image"></div>
-      <div id="recipeName12" class="name"></div>
-      <div id="img12" class="image"></div>
+      <div id="imagesContainer">
+        <div id="column">
+          <div id="recipeName0" class="name"></div>
+          <div id="img0" class="image"></div>
+          <div id="recipeName1" class="name"></div>
+          <div id="img1" class="image"></div>
+          <div id="recipeNam3" class="name"></div>
+          <div id="img3" class="image"></div>
+          <div id="recipeName4" class="name"></div>
+          <div id="img4" class="image"></div>
+        </div>
+        <div id="column">
+          <div id="recipeName5" class="name"></div>
+          <div id="img5" class="image"></div>
+          <div id="recipeName6" class="name"></div>
+          <div id="img6" class="image"></div>
+          <div id="recipeName7" class="name"></div>
+          <div id="img7" class="image"></div>
+          <div id="recipeName8" class="name"></div>
+          <div id="img8" class="image"></div>
+        </div>
+        <div id="column">
+          <div id="recipeName9" class="name"></div>
+          <div id="img9" class="image"></div>
+          <div id="recipeName10" class="name"></div>
+          <div id="img10" class="image"></div>
+          <div id="recipeName11" class="name"></div>
+          <div id="img11" class="image"></div>
+          <div id="recipeName12" class="name"></div>
+          <div id="img12" class="image"></div>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
