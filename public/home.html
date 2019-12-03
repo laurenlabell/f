@@ -136,15 +136,7 @@
                 for (i in result) {
                     displayRecipe(result[i].recipe_id, count);
                     count += 1;
-//                     console.log(result[i].recipe_id)
                 }
-//                 var id_array = [];
-//                 id_array.push(result['recipe_id']);
-//                 console.log(id_array)
-//                 for (let [key, value] of Object.entries(result)) {
-//                   return_result.push(value)
-//                 }
-//                 console.log(return_result)
             }
             else if (request.readyState == 4 && request.status != 200) {
                 result = request.responseText;    
