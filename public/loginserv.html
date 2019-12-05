@@ -84,6 +84,9 @@
                 var result = JSON.parse(request.responseText);
                 alert(JSON.stringify(result));
                 alert(result.length);
+                if (jQuery.isEmptyObject(result)) {
+                    alert("incorrect");
+                }
                 if (result.length == 0) {
                     alert("Incorrect username or password");
                 }
