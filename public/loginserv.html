@@ -82,6 +82,8 @@
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
                 var result = request.responseText;
+                alert(result);
+                alert(result.length);
                 if (result.length == 0) {
                     alert("Incorrect username or password");
                 }
