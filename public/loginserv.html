@@ -81,7 +81,14 @@
         request.open("GET", "https://ez-recipe.herokuapp.com/api/users/llabell", true);
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
-                var result = request.responseText;    
+                var result = request.responseText;
+                if (result.length() == 0) {
+                    alert("Incorrect username or password");
+                }
+                else {
+                    var user = result[0];
+                    alert(user);
+                }
                 alert(result);  
             }
             else if (request.readyState == 4 && request.status != 200) {
@@ -95,8 +102,3 @@
 
 </body>
 </html>
-
-
-
-
-s
