@@ -76,7 +76,6 @@
         var password = $("#pass").val();
         alert(username);
         alert(password);
-
         var request = new XMLHttpRequest();
         request.open("GET", "https://ez-recipe.herokuapp.com/api/users/" + username, true);
         request.onreadystatechange = function() {
@@ -89,6 +88,13 @@
                 }
                 else {
                     var user = result[0];
+                    if (user.password == password) {
+                        docCookies.login(user.username);
+                        alert("the cookie: " + getUsername());
+                    }
+                    else {
+                        alert("Incorrect username or password");
+                    }
                     alert(user);
                 }
                 alert(JSON.stringify(result));
@@ -104,4 +110,3 @@
 
 </body>
 </html>
-
