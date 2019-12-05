@@ -78,7 +78,7 @@
         alert(password);
 
         var request = new XMLHttpRequest();
-        request.open("GET", "https://ez-recipe.herokuapp.com/api/users/llabell", true);
+        request.open("GET", "https://ez-recipe.herokuapp.com/api/users/" + username, true);
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
                 var result = JSON.parse(request.responseText);
