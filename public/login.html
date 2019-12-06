@@ -174,8 +174,7 @@ span.psw {
    function login() {
         var username = $("#username").val();
         var password = $("#password").val();
-        alert (username); 
-        alert(password);
+        console.log(username + password);
         var request = new XMLHttpRequest();
         request.open("GET", "https://ez-recipe.herokuapp.com/api/users/" + username, true);
         request.onreadystatechange = function() {
