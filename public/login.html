@@ -187,6 +187,8 @@ span.psw {
                     var user = result[0];
                     if (user.password == password) {
                         docCookies.login(user.username);
+			 window.location.href = "http://ez-recipe.herokuapp.com/home.html"; 
+		        	return false;
                     }
                     else {
                         alert("Incorrect username or password");
@@ -196,11 +198,10 @@ span.psw {
             else if (request.readyState == 4 && request.status != 200) {
                 var result = request.responseText;    
                 console.log(result);
+	
             }
         }
         request.send();
-        window.location.href = "http://ez-recipe.herokuapp.com/home.html"; 
-		        return false;
     }
 </script>
 </body>
