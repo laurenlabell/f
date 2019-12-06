@@ -209,8 +209,9 @@ button:hover {
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
 		docCookies.login(user.username);
-                var result = request.responseText;    
-                console.log(result);  
+                var result = request.responseText;      
+		window.location.href = "http://ez-recipe.herokuapp.com/home.html"; 
+			return false;
             }
             else if (request.readyState == 4 && request.status != 200) {
                 var result = request.responseText;    
@@ -219,8 +220,6 @@ button:hover {
         }
         request.send(JSON.stringify(user));
         console.log ("signedup");
-	window.location.href = "http://ez-recipe.herokuapp.com/home.html"; 
-		return false;
     }
 </script>
 
