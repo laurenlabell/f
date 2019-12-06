@@ -17,32 +17,42 @@
     .cell {
       display: block;
      }
+    @media screen and (min-width: 600px) {
+      .grid {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+      }
+      .cell {
+        width: 50%;
+      }
+    }
       /* Create four equal columns that sits next to each other */
-      div.column {
+/*       div.column {
         flex: 25%;
         max-width: 25%;
         padding: 0 4px;
       }
-
+ */
 /*       div.column {
         margin-top: 8px;
         vertical-align: middle;
         width: 100%;
       } */
-      @media screen and (max-width: 800px) {
+/*       @media screen and (max-width: 800px) {
         .column {
           flex: 50%;
           max-width: 50%;
         }
-      }
+      } */
 
       /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-      @media screen and (max-width: 600px) {
+/*       @media screen and (max-width: 600px) {
         .column {
           flex: 100%;
           max-width: 100%;
         }
-      }
+      } */
   </style>
   <script type="text/javascript" src="cookies.js-master/cookies.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Vollkorn:900&display=swap" rel="stylesheet">
@@ -85,7 +95,7 @@
       <br/>
       <br/>
       <div id="imagesContainer">
-        <div id="column">
+        <div class="grid">
            <div class="cell">
             <div id="recipeName0" class="name"></div>
             <div id="img0" class="image"></div>
@@ -103,7 +113,8 @@
             <div id="img4" class="image"></div>
           </div>
         </div>
-        <div id="column">
+      </div>
+<!--         <div id="column">
           <div id="recipeName5" class="name"></div>
           <div id="img5" class="image"></div>
           <div id="recipeName6" class="name"></div>
@@ -124,7 +135,7 @@
           <div id="img12" class="image"></div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </nav>
 
