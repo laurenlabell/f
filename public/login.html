@@ -156,7 +156,7 @@ span.psw {
     <label for="password"><b>Password:</b></label>
     <input type="password" autocomplete="on" placeholder="Enter Password.." name="password" required>
         
-    <button type="submit">Login</button>
+    <button type="submit" onclick = "login()">Login</button>
     <label>
     <input type="checkbox" checked="checked" name="remember"> Remember me
     </label>
@@ -171,20 +171,34 @@ span.psw {
 
 
 <script language="javascript">
-    var user = $('#username').val();
-    $('#loginform').on('submit', function(user){
-      docCookies.login();{
-        if (!user){
-          alert("This username doesn't exist, try again!");
+   function login() {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var request = new XMLHttpRequest();
+        request.open("GET", "https://ez-recipe.herokuapp.com/api/users/" + username, true);
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                var result = JSON.parse(request.responseText);
+                if (jQuery.isEmptyObject(result)) {
+                    alert("Incorrect username or password");
+                }
+                else {
+                    var user = result[0];
+                    if (user.password == password) {
+                        docCookies.login(user.username);
+                    }
+                    else {
+                        alert("Incorrect username or password");
+                    }
+                }
+            }
+            else if (request.readyState == 4 && request.status != 200) {
+                var result = request.responseText;    
+                console.log(result);
+            }
         }
-      }
-      console.log('you submitted login form');
-    });
-    
-    $('#loginform').on('submit',function(){
-      docCookies.signedIn();
-      console.log("You are signed in");
-    });
+        request.send();
+    }
 </script>
   
 
