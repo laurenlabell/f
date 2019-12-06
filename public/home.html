@@ -14,7 +14,9 @@
         flex-wrap: wrap;
         padding: 0 4px;
       }
-
+    .cell {
+      display: block;
+     }
       /* Create four equal columns that sits next to each other */
       div.column {
         flex: 25%;
@@ -84,14 +86,22 @@
       <br/>
       <div id="imagesContainer">
         <div id="column">
-          <div id="recipeName0" class="name"></div>
-          <div id="img0" class="image"></div>
-          <div id="recipeName1" class="name"></div>
-          <div id="img1" class="image"></div>
-          <div id="recipeNam3" class="name"></div>
-          <div id="img3" class="image"></div>
-          <div id="recipeName4" class="name"></div>
-          <div id="img4" class="image"></div>
+           <div class="cell">
+            <div id="recipeName0" class="name"></div>
+            <div id="img0" class="image"></div>
+          </div>
+          <div class="cell">
+            <div id="recipeName1" class="name"></div>
+            <div id="img1" class="image"></div>
+          </div>
+          <div class="cell">
+            <div id="recipeNam3" class="name"></div>
+            <div id="img3" class="image"></div>
+          </div>
+          <div class="cell">
+            <div id="recipeName4" class="name"></div>
+            <div id="img4" class="image"></div>
+          </div>
         </div>
         <div id="column">
           <div id="recipeName5" class="name"></div>
