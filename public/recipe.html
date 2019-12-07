@@ -227,7 +227,7 @@
      console.log(userName);
       console.log(ID);
 
-    function addRecipe(){
+    async function addRecipe(){
       request = new XMLHttpRequest();
       request.open('get', '/api/recipes/' + ID, true);
       request.onreadystatechange = function() {
@@ -241,7 +241,7 @@
       }
       request.send();      
     }    
-    function postTheNewValue(){
+    async function postTheNewValue(){
       var recipe = {
         recipe_id: ID,
       } 
