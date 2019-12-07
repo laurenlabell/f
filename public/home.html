@@ -215,7 +215,7 @@
     }
 function getRecipeInfo(ids) {
     request = new XMLHttpRequest();
-    request.open("GET", "https://api.spoonacular.com/recipes/informationBulk?ids=" + ids + "?apiKey=a4da56b4833543059dbc13f1bba09a76", true);
+    request.open("GET", "https://api.spoonacular.com/recipes/informationBulk?ids=" + ids + "?apiKey=d29d8ec3d7c441b9837830d73b8aad83", true);
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
                 result = request.responseText;
