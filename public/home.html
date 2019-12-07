@@ -217,7 +217,7 @@ function getPopular() {
         request.open("GET", "https://ez-recipe.herokuapp.com/api/popular/", true);
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
-                console.log("hey);
+                console.log("hey");
                 var result = request.responseText;    
                 console.log(result);
                 var recipe_ids = getRequestString(JSON.parse(result));
