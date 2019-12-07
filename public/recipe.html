@@ -273,14 +273,17 @@
           result = JSON.parse(result);
           console.log(result);
           //Instructions
-          var steps = result.analyzedInstructions[0].steps;
-          var time = result.readyInMinutes;
-          document.getElementById("directions").innerHTML += "<div id='" + i + "' class='dir'>Time Needed: " + time + " minutes</div>";
-          for (var i = 0; i < steps.length; i++) {
-            var num = String(steps[i].number);
-            var step = String(steps[i].step);
-            document.getElementById("directions").innerHTML += "<div id='" + i + "'> " + num + ". " + step + "</div>";
+          if (result.analyzedInstructions[0] != null){
+            var steps = result.analyzedInstructions[0].steps;
+            var time = result.readyInMinutes;
+            document.getElementById("directions").innerHTML += "<div id='" + i + "' class='dir'>Time Needed: " + time + " minutes</div>";
+            for (var i = 0; i < steps.length; i++) {
+              var num = String(steps[i].number);
+              var step = String(steps[i].step);
+              document.getElementById("directions").innerHTML += "<div id='" + i + "'> " + num + ". " + step + "</div>";
+            }                
           }
+
           //ingredients
           var ingredients = result.extendedIngredients;
           for (var i = 0; i < ingredients.length; i++) {
