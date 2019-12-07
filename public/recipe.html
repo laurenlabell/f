@@ -332,6 +332,7 @@
         username: userName,
         recipe_id: ID,
       }
+      document.getElementById("formRev").reset();
       addRecipe();
       var request = new XMLHttpRequest();
       request.open("POST", "https://ez-recipe.herokuapp.com/api/saves", true);
