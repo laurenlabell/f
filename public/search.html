@@ -73,6 +73,12 @@
         width: 250px;
         height: 50px;
     }
+    #errorMsg {
+        text-align: center;
+        font-family: 'Quicksand', sans-serif;     
+        margin-top: 50px;
+        font-size: 25px;
+    }
 </style>
 
 <script language="javascript">
@@ -94,6 +100,8 @@
     });
 </script>
 
+<div id="messageContainer"></div>
+ 
 <div id="recipeContainer">
 </div>
 
@@ -119,6 +127,12 @@ function getMatches() {
 }
 function setupPage(result) {
     var recipes = JSON.parse(result).results;
+  
+    if (recipes.length == 0) {
+        var errorHTML = "<div id='errorMsg'>No recipe results. Please search again.</div>"
+        $("#messageContainer").append(errorHTML);
+    }
+  
     for (i = 0; i < recipes.length; i++) {
         addRecipeToPage(recipes[i]);
     }
