@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-  <title>Search</title>
+  <title>Navigation Bar</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -37,9 +37,9 @@
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li class="user-btns"><a href="signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> 
-        <li class="user-btns"><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li class="logout-btn"><a href=""><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <li class="user-btns"><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> 
+        <li class="user-btns"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li class="logout-btn"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
   </div>
@@ -82,7 +82,7 @@
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13'){
             docCookies.setSearch($('#nav-bar-search').val());
-            window.location.href = "search.html";
+            window.location.href = "http://ez-recipe.herokuapp.com/search.html";
             return false;
         }
         });
@@ -104,7 +104,6 @@ function getMatches() {
         alert("Something went wrong! Please try searching again.");
         return;
     }
-
     request = new XMLHttpRequest();
     request.open("GET", "https://api.spoonacular.com/recipes/search?query=" + query + "&number=20&apiKey=3f21d9f6a51941449793eda616cb9a71", true);
     request.onreadystatechange = function() {
@@ -118,10 +117,8 @@ function getMatches() {
     }
     request.send();
 }
-
 function setupPage(result) {
     var recipes = JSON.parse(result).results;
-
     for (i = 0; i < recipes.length; i++) {
         addRecipeToPage(recipes[i]);
     }
@@ -137,20 +134,18 @@ function addRecipeToPage(recipe) {
                      + " data-recipe-id=" + recipe.id + ">"
                      + imageHTML + nameHTML 
                      + "</div>";
-
     $("#recipeContainer").append(recipeHTML);
 }
 function seeRecipe(recipe) {
     var recipe_id = $(recipe).data("recipe-id");
     docCookies.setRecipe(recipe_id);
-    window.location.href = "recipe.html";
+    window.location.href = "http://ez-recipe.herokuapp.com/recipe.html";
 }
 </script>
 
 <script>
     getMatches();
 </script>
-  
 
 </body>
 </html>
