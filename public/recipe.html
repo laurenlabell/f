@@ -295,9 +295,6 @@
         else if (requestGen.readyState == 4 && requestGen.status != 200) {
           document.getElementById("ingredients").innerHTML = "Something is wrong!" + requestGen.status;
         }
-        else if (requestGen.readyState == 3) {
-          document.getElementById("ingredients").innerHTML = "Search in progress, please refresh";
-        }
       }
       requestGen.send();
     };
