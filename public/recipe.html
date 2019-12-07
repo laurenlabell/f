@@ -227,8 +227,7 @@
      console.log(userName);
       console.log(ID);
 
-    async function addRecipe(){
-      return new Promise(resolve => {
+    async function  addRecipe(){
           request = new XMLHttpRequest();
           request.open('get', '/api/recipes/' + ID, true);
           request.onreadystatechange = function() {
@@ -239,12 +238,14 @@
                   }
               }
         }
-        request.send();      
-        }  
+        request.send();   
+        return new Promise(resolve => {
         setTimeout(() => {
-        resolve('resolved');
-      }, 2000);
+          resolve('resolved');
+        }, 2000);
       });
+  
+    }
   
     async function postTheNewValue(){
       var recipe = {
@@ -349,7 +350,7 @@
         alert("Please log in before saving a recipe");
         return;
       }
-      addRecipe();
+      var resolve = addRecipe();
       var request = new XMLHttpRequest();
       request.open("POST", "/api/saves", true);
       request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
