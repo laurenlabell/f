@@ -282,6 +282,8 @@
               var step = String(steps[i].step);
               document.getElementById("directions").innerHTML += "<div id='" + i + "'> " + num + ". " + step + "</div>";
             }                
+          }else{
+             document.getElementById("directions").innerHTML = "No Directions for this recipe are available";
           }
 
           //ingredients
