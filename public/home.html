@@ -146,7 +146,7 @@ function getRecipeInfo(ids) {
         if (request.readyState == 4 && request.status == 200) {
                 result = request.responseText;
                 setupPage(result);
-        }
+        } 
         else if (request.readyState == 4 && request.status != 200) {
             alert("Something went wrong!");
         }
