@@ -334,7 +334,11 @@
         username: userName,
         recipe_id: ID,
       }
-      console.log(userName);
+      if (userName == null)
+      {
+        alert("Please log in before saving a recipe");
+        return;
+      }
       addRecipe();
       var request = new XMLHttpRequest();
       request.open("POST", "https://ez-recipe.herokuapp.com/api/saves", true);
@@ -356,6 +360,11 @@
 
     var review1;
     function saveReview(){
+      if (userName == null)
+      {
+        alert("Please log in before uploading a review");
+        return;
+      }
       for (var i = 0; i < users_reviewed.length; i++) {
         if (users_reviewed[i] == userName){
           alert("You have already made a review for this recipe");
