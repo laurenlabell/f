@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <title>Navigation Bar</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +12,6 @@
   <script type="text/javascript" src="cookies.js-master/cookies.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Vollkorn:900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
-
 </head>
 <body>
 
@@ -45,6 +45,36 @@
   </div>
 </nav>
 
+<style>
+    #recipeContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    #recipeContainer .recipe {
+        padding: 10px;
+        background-color: #C5CBE3;
+        margin: 20px 10px;
+    }
+    #recipeContainer .recipe:hover {
+        padding: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        margin: 20px 10px;
+        cursor: pointer;
+    }
+    #recipeContainer .recipeImg {
+        width: 250px;
+    }
+    #recipeContainer .recipeName {
+        margin-top: 10px;
+        padding: 8px;
+        font-family: 'Quicksand', sans-serif; 
+        font-weight: bold;
+        width: 250px;
+        height: 50px;
+    }
+</style>
+
 <script language="javascript">
     $(document).ready(function() {
         docCookies.updateUserDisplay();
@@ -52,7 +82,7 @@
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13'){
             docCookies.setSearch($('#nav-bar-search').val());
-            window.location.href = "#"; // put search page here
+            window.location.href = "http://ez-recipe.herokuapp.com/search.html";
             return false;
         }
         });
@@ -62,6 +92,63 @@
         docCookies.logout();
       });
     });
+</script>
+
+<div id="recipeContainer">
+</div>
+
+<script>
+function getMatches() {
+    query = docCookies.getSearch();
+    if (query == null) {
+        alert("Something went wrong! Please try searching again.");
+        return;
+    }
+
+    request = new XMLHttpRequest();
+    request.open("GET", "https://api.spoonacular.com/recipes/search?query=" + query + "&number=20&apiKey=3f21d9f6a51941449793eda616cb9a71", true);
+    request.onreadystatechange = function() {
+        if (request.readyState == 4 && request.status == 200) {
+                result = request.responseText;
+                setupPage(result);  
+        }
+        else if (request.readyState == 4 && request.status != 200) {
+            alert("Something went wrong!");
+        }
+    }
+    request.send();
+}
+
+function setupPage(result) {
+    var recipes = JSON.parse(result).results;
+
+    for (i = 0; i < recipes.length; i++) {
+        addRecipeToPage(recipes[i]);
+    }
+}
+function addRecipeToPage(recipe) {
+    var imageHTML = "<img class='recipeImg'" 
+                + "src=" 
+                + "'https://spoonacular.com/recipeImages/" + recipe.id + "-556x370.jpg'"
+                + ">";
+    var nameHTML = "<div class='recipeName'>" + recipe.title + "</div>";
+    var recipeHTML = "<div class='recipe'" 
+                     + " onclick='seeRecipe(this)'"
+                     + " data-recipe-id=" + recipe.id + ">"
+                     + imageHTML + nameHTML 
+                     + "</div>";
+
+    $("#recipeContainer").append(recipeHTML);
+}
+function seeRecipe(recipe) {
+    var recipe_id = $(recipe).data("recipe-id");
+    docCookies.setRecipe(recipe_id);
+    window.location.href = "http://ez-recipe.herokuapp.com/recipe.html";
+}
+</script>
+
+<script>
+    getMatches();
 </script>
   
 
