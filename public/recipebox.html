@@ -146,6 +146,11 @@
 
     function setupPage(result) {
         var recipes = JSON.parse(result);
+      
+        if (recipes.length == 0) {
+            var errorHTML = "<div id='errorMsg'>You do not have any recipes saved.</div>"
+            $("#messageContainer").append(errorHTML);    
+        }
         
         for (i = 0; i < recipes.length; i++) {
             addRecipeToPage(recipes[i]);
