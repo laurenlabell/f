@@ -149,7 +149,8 @@
       
         if (recipes.length == 0) {
             var errorHTML = "<div id='errorMsg'>You do not have any recipes saved.</div>"
-            $("#messageContainer").append(errorHTML);    
+            $("#messageContainer").append(errorHTML);
+            return;
         }
         
         for (i = 0; i < recipes.length; i++) {
