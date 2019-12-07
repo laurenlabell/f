@@ -352,7 +352,7 @@
           }
           else if (request.readyState == 4 && request.status != 200) {
               var result = request.responseText;    
-              if (result == "ER_DUP_ENTRY") alert("Something went wrong inserting review");
+              if (result == "ER_DUP_ENTRY") alert("You already saved this review");
           }
       }
       request.send(JSON.stringify(save));
