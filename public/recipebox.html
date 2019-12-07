@@ -130,7 +130,7 @@
                 getRecipeInfo(recipe_ids);
             }
             else if (request.readyState == 4 && request.status != 200) {
-                alert("Something went wrong!");
+                alert("Something went wrong in database!");
             }
         }
         request.send();
@@ -145,7 +145,7 @@
                     setupPage(result);
             }
             else if (request.readyState == 4 && request.status != 200) {
-                alert("Something went wrong!");
+                alert("Something went wrong in api!");
             }
         }
         request.send();
