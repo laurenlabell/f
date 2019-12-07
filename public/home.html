@@ -262,6 +262,16 @@ function setupPage(result) {
                         + "</div>";
         $("#recipeContainer").append(recipeHTML);
     }
+  function getRequestString(popular) {
+        var recipe_ids = "";
+        for (i = 0; i < popular.length; i++) {
+            recipe_ids += popular[i].recipe_id;
+            if (i < popular.length - 1) {
+                recipe_ids += ",";
+            }
+        }
+        return recipe_ids;
+    }
   getPopular();
 </script>
 
