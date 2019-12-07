@@ -220,12 +220,12 @@
   </div>
 
   <script type="text/javascript">
-    //Figure out how to get the cookie for this
-    //var ID = 1003464;
-    //var userName = "acervantes";
+    //Cookies
+
     var ID = docCookies.getRecipe();
     var userName = docCookies.getUsername();
-
+     console.log(userName);
+      console.log(ID);
 
     function addRecipe(){
       request = new XMLHttpRequest();
@@ -257,12 +257,10 @@
               if (result == "ER_DUP_ENTRY") alert("Something went wrong inserting review");
           }
       }
-      console.log(recipe);
       request.send(JSON.stringify(recipe));
     }
 
     function getRecipe() {
-      console.log(ID);
       requestGen = new XMLHttpRequest();
       requestGen.open("get", "https://api.spoonacular.com/recipes/" + ID + "/information?includeNutrition=false&apiKey=d8be32c9194e4bc78c0299798df2d53d", true);
       // Step 3: set up event handler/callback
