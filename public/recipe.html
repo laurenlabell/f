@@ -227,7 +227,7 @@
      console.log(userName);
       console.log(ID);
 
-    function addRecipe(_callback){
+    function addRecipe(){
       request = new XMLHttpRequest();
       request.open('get', '/api/recipes/' + ID, true);
       request.onreadystatechange = function() {
@@ -235,11 +235,8 @@
               data = JSON.parse(request.responseText);
               if (data.length == 0){
                 postTheNewValue();
-                _callback()
               }
-              else{
-                _callback()
-              }
+
           }
       }
       request.send();      
@@ -347,9 +344,7 @@
         alert("Please log in before saving a recipe");
         return;
       }
-        addRecipe(function() {
-          console.log("huzzah, I'm done!");
-       });    
+      addRecipe();
       var request = new XMLHttpRequest();
       request.open("POST", "/api/saves", true);
       request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
