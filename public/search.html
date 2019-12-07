@@ -88,7 +88,7 @@
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13'){
             docCookies.setSearch($('#nav-bar-search').val());
-            window.location.href = "http://ez-recipe.herokuapp.com/search.html";
+            window.location.href = "search.html";
             return false;
         }
         });
@@ -153,7 +153,7 @@ function addRecipeToPage(recipe) {
 function seeRecipe(recipe) {
     var recipe_id = $(recipe).data("recipe-id");
     docCookies.setRecipe(recipe_id);
-    window.location.href = "http://ez-recipe.herokuapp.com/recipe.html";
+    window.location.href = "recipe.html";
 }
 </script>
 
