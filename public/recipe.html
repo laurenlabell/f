@@ -245,7 +245,7 @@
         recipe_id: ID,
       } 
       var request = new XMLHttpRequest();
-      request.open("POST", "https://ez-recipe.herokuapp.com/api/recipes", true);
+      request.open("POST", "/api/recipes", true);
       request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
       request.onreadystatechange = function() {
           if (request.readyState == 4 && request.status == 200) {
@@ -342,7 +342,7 @@
       }
       addRecipe();
       var request = new XMLHttpRequest();
-      request.open("POST", "https://ez-recipe.herokuapp.com/api/saves", true);
+      request.open("POST", "/api/saves", true);
       request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
       request.onreadystatechange = function() {
           if (request.readyState == 4 && request.status == 200) {
