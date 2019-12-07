@@ -120,6 +120,13 @@
                 var result = request.responseText;    
                 
                 var recipe_ids = getRequestString(JSON.parse(result));
+              
+                if (recipe_ids.length == 0) {
+                    var errorHTML = "<div id='errorMsg'>You do not have any recipes saved.</div>"
+                    $("#messageContainer").append(errorHTML);
+                    return;
+                }
+              
                 getRecipeInfo(recipe_ids);
             }
             else if (request.readyState == 4 && request.status != 200) {
@@ -146,12 +153,6 @@
 
     function setupPage(result) {
         var recipes = JSON.parse(result);
-      
-        if (recipes.length == 0) {
-            var errorHTML = "<div id='errorMsg'>You do not have any recipes saved.</div>"
-            $("#messageContainer").append(errorHTML);
-            return;
-        }
         
         for (i = 0; i < recipes.length; i++) {
             addRecipeToPage(recipes[i]);
