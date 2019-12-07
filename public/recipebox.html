@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Navigation Bar</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel = "stylesheet" type = "text/css" href = "style.css" />
+  <script type="text/javascript" src="cookies.js-master/cookies.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Vollkorn:900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+
+<style>
+    h1 {
+        font-family: 'Quicksand', sans-serif; 
+        font-size: 25px;
+        padding-left: 10px;
+    }
+    #recipeContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    #recipeContainer .recipe {
+        padding: 10px;
+        background-color: #C5CBE3;
+        margin: 20px 10px;
+    }
+    #recipeContainer .recipe:hover {
+        padding: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        margin: 20px 10px;
+        cursor: pointer;
+    }
+    #recipeContainer .recipeImg {
+        width: 250px;
+    }
+    #recipeContainer .recipeName {
+        margin-top: 10px;
+        padding: 8px;
+        font-family: 'Quicksand', sans-serif; 
+        font-weight: bold;
+        width: 250px;
+        height: 50px;
+    }
+    #errorMsg {
+        text-align: center;
+        font-family: 'Quicksand', sans-serif;     
+        margin-top: 50px;
+        font-size: 25px;
+    }
+</style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">EZ Recipe</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="#">My Recipes</a></li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input id="nav-bar-search" type="text" class="form-control" placeholder="Search for a recipe">
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="user-btns"><a href="http://ez-recipe.herokuapp.com/signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> 
+        <li class="user-btns"><a href="http://ez-recipe.herokuapp.com/login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li class="logout-btn"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script language="javascript">
+    $(document).ready(function() {
+        docCookies.updateUserDisplay();
+        $('#nav-bar-search').keypress(function(event){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13'){
+            docCookies.setSearch($('#nav-bar-search').val());
+            window.location.href = "http://ez-recipe.herokuapp.com/search.html"; // put search page here
+            return false;
+        }
+        });
+    });
+    $(document).ready(function() {
+      $(".logout-btn").click(function() {
+        docCookies.logout();
+      });
+    });
+</script>
+
+<h1></h1>
+<div id="messageContainer"></div>
+
+<div id="recipeContainer">
+</div>
+
+<script>
+    function getSaves(username) {
+        var request = new XMLHttpRequest();
+        request.open("GET", "https://ez-recipe.herokuapp.com/api/saves/" + username, true);
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                var result = request.responseText;    
+                
+                var recipe_ids = getRequestString(JSON.parse(result));
+                getRecipeInfo(recipe_ids);
+            }
+            else if (request.readyState == 4 && request.status != 200) {
+                alert("Something went wrong!");
+            }
+        }
+        request.send();
+    }
+
+    function getRecipeInfo(ids) {
+        request = new XMLHttpRequest();
+        request.open("GET", "https://api.spoonacular.com/recipes/informationBulk?ids=" + ids + "&apiKey=3f21d9f6a51941449793eda616cb9a71", true);
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                    result = request.responseText;
+                    setupPage(result);
+            }
+            else if (request.readyState == 4 && request.status != 200) {
+                alert("Something went wrong!");
+            }
+        }
+        request.send();
+    }
+
+    function setupPage(result) {
+        var recipes = JSON.parse(result);
+        
+        for (i = 0; i < recipes.length; i++) {
+            addRecipeToPage(recipes[i]);
+        }
+    }
+
+    function addRecipeToPage(recipe) {
+        var imageHTML = "<img class='recipeImg'" 
+                    + "src=" 
+                    + "'https://spoonacular.com/recipeImages/" + recipe.id + "-556x370.jpg'"
+                    + ">";
+        var nameHTML = "<div class='recipeName'>" + recipe.title + "</div>";
+        var recipeHTML = "<div class='recipe'" 
+                        + " onclick='seeRecipe(this)'"
+                        + " data-recipe-id=" + recipe.id + ">"
+                        + imageHTML + nameHTML 
+                        + "</div>";
+
+        $("#recipeContainer").append(recipeHTML);
+    }
+
+    function seeRecipe(recipe) {
+        var recipe_id = $(recipe).data("recipe-id");
+        docCookies.setRecipe(recipe_id);
+        window.location.href = "http://ez-recipe.herokuapp.com/recipe.html";
+    }
+
+    function getRequestString(saves) {
+        var recipe_ids = "";
+
+        for (i = 0; i < saves.length; i++) {
+            recipe_ids += saves[i].recipe_id;
+            if (i < saves.length - 1) {
+                recipe_ids += ",";
+            }
+        }
+        return recipe_ids;
+    }
+</script>
+
+<script>
+    username = docCookies.getUsername();
+    if (username == null) {
+        var errorHTML = "<div id='errorMsg'>Please log in to see your recipes!</div>"
+        $("#messageContainer").append(errorHTML);
+    }
+    else {
+        $('h1').html("Saved Recipes");
+        getSaves(username);
+    }
+
+</script>
+  
+</body>
+</html>
+
