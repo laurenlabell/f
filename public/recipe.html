@@ -327,12 +327,14 @@
     }
     getRecipe();
     getReviews();
+    
+    
     function saveRecipe(){
       var save = {
         username: userName,
         recipe_id: ID,
       }
-      document.getElementById("formRev").reset();
+      
       addRecipe();
       var request = new XMLHttpRequest();
       request.open("POST", "https://ez-recipe.herokuapp.com/api/saves", true);
@@ -368,12 +370,13 @@
         username: userName,
         recipe_id: ID,
       }
+      document.getElementById("formRev").reset();
       addRecipe();
       postReview();
     }
     function postReview(){
         var request = new XMLHttpRequest();
-        request.open("POST", "https://ez-recipe.herokuapp.com/api/reviews", true);
+        request.open("POST", "/api/reviews", true);
         request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
@@ -388,6 +391,8 @@
         }
         request.send(JSON.stringify(review1));
     }
+    
+    
     $(document).ready(function(){
       $('#divCont img').on({
         mouseover : function() {
