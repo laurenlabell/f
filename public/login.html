@@ -100,12 +100,12 @@ span.psw {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">EZ Recipe</a>
+      <a class="navbar-brand" href="home.html">EZ Recipe</a>
     </div>
 
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#">Home</a></li>
+        <li><a href="home.html">Home</a></li>
         <li><a href="recipes.html">My Recipes</a></li>
       </ul>
       <form class="navbar-form navbar-left">
@@ -116,7 +116,7 @@ span.psw {
       <ul class="nav navbar-nav navbar-right">
         <li class="user-btns"><a href="signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> 
         <li class="user-btns"><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li class="logout-btn"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <li class="logout-btn"><a href="home.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
   </div>
@@ -129,7 +129,7 @@ span.psw {
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13'){
             docCookies.setSearch($('#nav-bar-search').val());
-            window.location.href = "#"; // put search page here
+            window.location.href = "search.html"; // put search page here
             return false;
         }
         });
@@ -176,7 +176,7 @@ span.psw {
         var password = $("#password").val();
         console.log(username + password);
         var request = new XMLHttpRequest();
-        request.open("GET", "https://ez-recipe.herokuapp.com/api/users/" + username, true);
+        request.open("GET", "/api/users/" + username, true);
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
                 var result = JSON.parse(request.responseText);
@@ -187,8 +187,8 @@ span.psw {
                     var user = result[0];
                     if (user.password == password) {
                         docCookies.login(user.username);
-			 window.location.href = "http://ez-recipe.herokuapp.com/home.html"; 
-		        	return false;
+			window.location.href = "home.html"; 
+		        return false;
                     }
                     else {
                         alert("Incorrect username or password");
