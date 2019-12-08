@@ -105,13 +105,13 @@ button:hover {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">EZ Recipe</a>
+      <a class="navbar-brand" href="home.html">EZ Recipe</a>
     </div>
 
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">My Recipes</a></li>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="recipebox.html">My Recipes</a></li>
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
@@ -121,7 +121,7 @@ button:hover {
       <ul class="nav navbar-nav navbar-right">
         <li class="user-btns"><a href="signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> 
         <li class="user-btns"><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li class="logout-btn"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <li class="logout-btn"><a href="home.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
   </div>
@@ -134,7 +134,7 @@ button:hover {
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13'){
             docCookies.setSearch($('#nav-bar-search').val());
-            window.location.href = "#"; // put search page here
+            window.location.href = "search.html"; // put search page here
             return false;
         }
         });
@@ -160,15 +160,12 @@ button:hover {
     <label for="firstname"><b>First Name:</b></label>
     <input type="text" placeholder="Enter First Name..." id="firstname" name = "firstname" required>
 
-	<label for="lastname"><b>Last Name: </b></label>
+    <label for="lastname"><b>Last Name: </b></label>
     <input type="text" placeholder="Enter Last Name..." id = "lastname" name = "lastname" required>
 
-  
-
-    <label for="pass"><b>Password: </b></label>
+    <label for="password"><b>Password: </b></label>
     <input type="password" placeholder="Enter Password..." id = "password" autocomplete="on" name = "password" required>
-
-    
+	  
     <p style="font-style: italic">*By creating an account you agree to our <b style="color: #4056A1">Terms & Privacy</b>.</p>
 
     <div class="goback">
@@ -183,31 +180,30 @@ button:hover {
 
 	function goback()
 	{
-		location.replace("login.html")
+	    location.replace("login.html")
 	}
 
-
 	function addUser() {
-		var u = $('#username').val();
-		var f = $('#firstname').val();
-		var l = $('#lastname').val();
-		var p = $('#password').val();
+	    var u = $('#username').val();
+	    var f = $('#firstname').val();
+	    var l = $('#lastname').val();
+	    var p = $('#password').val();
 
-	 var user = { 
-        username: u,
-        firstname: f,
-        lastname: l,
-        password: p
+	var user = { 
+            username: u,
+            firstname: f,
+            lastname: l,
+            password: p
     	};
 
         var request = new XMLHttpRequest();
-        request.open("POST", "https://ez-recipe.herokuapp.com/api/users", true);
+        request.open("POST", "/api/users", true);
         request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
 		alert("Welcome to EZ Recipe " + user.firstname);
 		docCookies.login(user.username);
-		window.location.href = "http://ez-recipe.herokuapp.com/home.html"; 
+		window.location.href = "home.html"; 
 		return false;
             }
             else if (request.readyState == 4 && request.status != 200) {
@@ -216,7 +212,6 @@ button:hover {
             }
         }
         request.send(JSON.stringify(user));
-        console.log ("signedup");
     }
 </script>
 
