@@ -134,14 +134,14 @@
                 getRecipeInfo(recipe_ids);
             }
             else if (request.readyState == 4 && request.status != 200) {
-                alert("Something went wrong! (with us)");
+                alert("Something went wrong!");
             }
         }
         request.send();
     }
 function getRecipeInfo(ids) {
     request = new XMLHttpRequest();
-    request.open("GET", "https://api.spoonacular.com/recipes/informationBulk?ids=" + ids + "?apiKey=19eed8a3cd23400d814be6868f82259c", true);
+    request.open("GET", "https://api.spoonacular.com/recipes/informationBulk?ids=" + ids + "&apiKey=19eed8a3cd23400d814be6868f82259c", true);
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
                 result = request.responseText;
@@ -149,7 +149,7 @@ function getRecipeInfo(ids) {
         } 
         else if (request.readyState == 4 && request.status != 200) {
             alert(request.responseText);
-            alert("Something went wrong! (with api)");
+            alert("Something went wrong!");
         }
     }
     request.send();
