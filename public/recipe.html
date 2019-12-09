@@ -309,6 +309,7 @@
       request.onreadystatechange = function() {
           if (request.readyState == 4 && request.status == 200){
               data = JSON.parse(request.responseText);
+              console.log(data);
               if (data.length == 0){
                 document.getElementById("reviews").innerHTML = "No reviews for this recipe yet";
               }
