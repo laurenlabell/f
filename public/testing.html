@@ -68,10 +68,12 @@
     //docCookies.setRecipe("219916");
 
   function getReview() {
+        alert("in function getReview");
         var request = new XMLHttpRequest();
         request.open("GET", "/api/reviews/219916", true);
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
+                alert("success");
                 var result = request.responseText;    
                 alert(result);
             }
@@ -81,6 +83,8 @@
         }
         request.send();
     }
+  
+  getReview();
 </script>
   
 
