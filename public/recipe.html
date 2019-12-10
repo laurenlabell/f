@@ -228,8 +228,7 @@
       console.log(ID);
 
     function  addRecipe(){
-          getRecipeInfo();
-          getReviews();
+
           request = new XMLHttpRequest();
           request.open('get', '/api/recipes/' + ID, true);
           request.onreadystatechange = function() {
@@ -300,9 +299,9 @@
         }
       }
       requestGen.send();
-    };
-
-
+    }
+    
+    
     var users_reviewed = [];
     function getReviews(){
       console.log("hello");
@@ -312,8 +311,8 @@
       request.onreadystatechange = function() {
           if (request.readyState == 4 && request.status == 200){
               data = JSON.parse(request.responseText);
-            console.log(data);
-            console.log(data.length);
+              console.log(data);
+              console.log(data.length);
               if (data.length == 0){
                 document.getElementById("reviews").innerHTML = "No reviews for this recipe yet";
               }
@@ -340,6 +339,8 @@
     }
     
 
+    getRecipeInfo();
+    getReviews();
     
     
     function saveRecipe(){
