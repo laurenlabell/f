@@ -156,11 +156,33 @@
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li class="user-btns"><a href="http://ez-recipe.herokuapp.com/signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> 
-        <li class="user-btns"><a href="http://ez-recipe.herokuapp.com/login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li class="logout-btn"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <li class="user-btns"><a href="signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> 
+        <li class="user-btns"><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li class="logout-btn"><a href="home.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
-    </div>
+      <br/>
+      <br/>
+      <br/>
+      <div class="imagesContainer">
+        <div class="grid">
+           <div class="cell">
+            <div id="recipeName0" class="name"></div>
+            <div id="img0" class="image"></div>
+          </div>
+          <div class="cell">
+            <div id="recipeName1" class="name"></div>
+            <div id="img1" class="image"></div>
+          </div>
+          <div class="cell">
+            <div id="recipeNam3" class="name"></div>
+            <div id="img3" class="image"></div>
+          </div>
+          <div class="cell">
+            <div id="recipeName4" class="name"></div>
+            <div id="img4" class="image"></div>
+          </div>
+        </div>
+      </div>
   </div>
 </nav>
 
@@ -171,7 +193,7 @@
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13'){
             docCookies.setSearch($('#nav-bar-search').val());
-            window.location.href = "http://ez-recipe.herokuapp.com/search.html"; // put search page here
+            window.location.href = "search.html"; // put search page here
             return false;
         }
         });
@@ -181,7 +203,7 @@
         docCookies.logout();
       });
     });
-</script>
+  </script>
 
 
   <div class="bodyRecipe"> 
