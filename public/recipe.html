@@ -326,6 +326,13 @@
                 }
               }
           }
+          else if (request.readyState == 4 && request.status != 200) {
+            document.getElementById("reviews").innerHTML = "Something is wrong! Very sad " + request.status;
+          }
+
+          else if (request.readyState == 3) {
+            document.getElementById("reviews").innerHTML = "Search in progress, too impatient";
+          }
       }
       request.send();
     }
