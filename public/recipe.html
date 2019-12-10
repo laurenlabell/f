@@ -301,13 +301,37 @@
       requestGen.send();
     }
     
-    
+ 
     var users_reviewed = [];
     function getReviews(){
-      console.log("hello");
-      request = new XMLHttpRequest();
-      request.open("GET", "https://ez-recipe.herokuapp.com/recipe.html/api/reviews/", true);
-      request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        alert("in function getReview");
+        var request = new XMLHttpRequest();
+        request.open("GET", "/api/reviews/" + ID, true);
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                alert("success");
+                var result = request.responseText;    
+                alert(result);
+                console.log(JSON.parse(result));
+                if (data.length == 0){
+                  document.getElementById("reviews").innerHTML = "No reviews for this recipe yet";
+                }
+                else{
+                   for (var i = 0; i < data.length; i++) {
+                    var user = String(data[i].username);
+                    users_reviewed.push(user);
+                    var rating = String(data[i].rating);
+                    var reviewtext = String(data[i].review);
+                    document.getElementById("reviews").innerHTML += "<div id='" + i + "'class='revHead'> " + user + ": " + rating + "/5</div>";
+                    document.getElementById("reviews").innerHTML += "<div id='" + i + "'> " + reviewtext + "</div>";
+                  }
+                }
+            }
+            else if (request.readyState == 4 && request.status != 200) {
+                alert("Something went wrong!");
+            }
+        }
+        request.send();   
       request.onreadystatechange = function() {
           if (request.readyState == 4 && request.status == 200){
               data = JSON.parse(request.responseText);
