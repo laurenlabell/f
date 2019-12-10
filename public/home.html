@@ -134,7 +134,7 @@
                 getRecipeInfo(recipe_ids);
             }
             else if (request.readyState == 4 && request.status != 200) {
-                alert("Something went wrong!");
+                alert("Oh no, we ran out of API calls! You might have to wait until tomorrow...");
             }
         }
         request.send();
