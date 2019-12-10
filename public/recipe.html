@@ -295,7 +295,7 @@
           document.getElementById("img").innerHTML = "<img class='imager' src='" + result.image + "' />";
         }
         else if (requestGen.readyState == 4 && requestGen.status != 200) {
-          document.getElementById("ingredients").innerHTML = "Something is wrong!" + requestGen.status;
+          document.getElementById("ingredients").innerHTML = "Unfortunately, Our API is out of uses, so sorry!!";
         }
       }
       requestGen.send();
