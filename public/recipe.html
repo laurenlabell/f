@@ -304,7 +304,7 @@
     var users_reviewed = [];
     function getReviews(){
       request = new XMLHttpRequest();
-      request.open("get", "https://ez-recipe.herokuapp.com/api/reviews/" + ID, true);
+      request.open("get", "https://ez-recipe.herokuapp.com/api/reviews/:" + ID + "", true);
       request.onreadystatechange = function() {
           if (request.readyState == 4 && request.status == 200){
               data = JSON.parse(request.responseText);
