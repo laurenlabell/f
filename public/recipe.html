@@ -228,6 +228,8 @@
       console.log(ID);
 
     function  addRecipe(){
+          getRecipeInfo();
+          getReviews();
           request = new XMLHttpRequest();
           request.open('get', '/api/recipes/' + ID, true);
           request.onreadystatechange = function() {
@@ -257,7 +259,7 @@
       request.send(JSON.stringify(recipe));
     }
 
-    function getRecipe() {
+    function getRecipeInfo() {
       requestGen = new XMLHttpRequest();
       requestGen.open("get", "https://api.spoonacular.com/recipes/" + ID + "/information?includeNutrition=false&apiKey=d8be32c9194e4bc78c0299798df2d53d", true);
       // Step 3: set up event handler/callback
@@ -305,7 +307,7 @@
     function getReviews(){
       console.log("hello");
       request = new XMLHttpRequest();
-      request.open("GET", "http://ez-recipe.herokuapp.com/api/reviews/" + ID + "/", true);
+      request.open("GET", "https://ez-recipe.herokuapp.com/api/reviews/" + ID + "/", true);
       request.onreadystatechange = function() {
           if (request.readyState == 4 && request.status == 200){
               data = JSON.parse(request.responseText);
@@ -327,8 +329,7 @@
       request.send();
     }
     
-    getRecipe();
-    getReviews();
+
     
     
     function saveRecipe(){
