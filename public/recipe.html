@@ -306,7 +306,7 @@
     function getReviews(){
       console.log("hello");
       request = new XMLHttpRequest();
-      request.open("GET", "/api/reviews/", true);
+      request.open("GET", "https://ez-recipe.herokuapp.com/recipe.html/api/reviews/", true);
       request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
       request.onreadystatechange = function() {
           if (request.readyState == 4 && request.status == 200){
